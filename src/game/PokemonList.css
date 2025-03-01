@@ -1,13 +1,11 @@
 .up, .down {
-  height: 48px;
+  height: 35px;
   width: 48px;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 20px;
-  color: white;
-  background: gray;
+  color: gray;
   cursor: pointer;
 }
 
@@ -20,21 +18,22 @@
 }
 
 .up::before, .down::before {
-  content: "";
-  position: relative;
-  border: solid currentColor;
-  border-width: 10px 10px 0 0;
-  height: 20px;
-  width: 20px;
+	content: "";
+	position: relative;
+	border-style: solid;
+	border-width: 10px;
+	height: 10px;
+	width: 10px;
+	border-color: currentColor currentColor transparent transparent;
 }
 
 .up::before {
-  top: 7px;
+  top: 10px;
   transform: rotate(-45deg);
 }
 
 .down::before {
-  top: -7px;
+  top: -10px;
   transform: rotate(135deg);
 }
 
@@ -63,4 +62,8 @@
   to {
     transform: translateY(calc(3px + 100%));
   }
+}
+
+.correct {
+  background: greenyellow !important;
 }

@@ -1,26 +1,50 @@
 import './PokemonList.css'
 
+/**
+ * Component to display a single Pokemon item with controls to move it up or down.
+ *
+ * @param {Object} props - The component props.
+ * @param {Pokemon[]} props.pokemon - The pokemon object.
+ * @param {Function} props.onUp - Callback function to move the pokemon up.
+ * @param {Function} props.onDown - Callback function to move the pokemon down.
+ */
 function PokemonItem ({pokemon, onUp, onDown}) {
-  const className = pokemon.movingUp ? 'moving-up'
+  const movingClass = pokemon.movingUp ? 'moving-up'
     : pokemon.movingDown ? 'moving-down'
     : '';
 
+  const correctClass = pokemon.correct ? 'correct' : ''
+
   return (
-    <div className={className} style={{
+    <div className={[movingClass, correctClass].join(' ')} style={{
       display: "flex",
       alignItems: "center",
-      border: "1px solid gray",
+      background: "#ccd0d7",
+      borderRadius: 99,
     }}>
       <img
-        style={{ height: 64 }}
+        style={{
+          height: 64,
+          width: 64,
+          borderRadius: 99,
+          margin: 5,
+          background: "white",
+        }}
         src={pokemon.sprites.front_default}
-        alt="pokemon sprite"
       />
       <div style={{flexGrow: 1}}>
-        {pokemon.species.name}
+        <span style={{textTransform: "capitalize"}}>
+          {pokemon.species.name}
+        </span>
+        &nbsp;
+        {pokemon.correct && <span>
+          ({pokemon.height * 10} cm)
+        </span>}
       </div>
-      <div className="up" onClick={onUp}></div>
-      <div className="down" onClick={onDown}></div>
+      <div style={{marginRight: 10}}>
+        <div className="up" onClick={onUp}></div>
+        <div className="down" onClick={onDown}></div>
+      </div>
     </div>
   )
 }

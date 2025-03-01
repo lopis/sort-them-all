@@ -11,11 +11,10 @@ const TOTAL_POKEMON_COUNT = 1304;
 
 function Game() {
   const [pokemonList, setPokemonList] = useState([]);
+  const [tries, setTries] = useState(0);
   const hasFetched = useRef(false);
 
   const moveUp = (i) => {
-    console.log('moveUp');
-    
     if (i > 0) {
       const newList = [...pokemonList];
       newList[i].movingUp = true;
@@ -47,6 +46,13 @@ function Game() {
     }
   }
 
+  const submit = () => {
+    setTries(tries+1);
+    setPokemonList(pokemonList.map((pokemon, i) => ({
+      ...pokemon,
+      correct: i === pokemon.order,
+    })));
+  }
   
   useEffect(() => {
     if(!hasFetched.current) {
@@ -56,7 +62,10 @@ function Game() {
     }
 
     const fetchPokemon = async () => {
-      setPokemonList(await Promise.all(
+      /**
+       * @type Pokemon[]
+       */
+      const list = await Promise.all(
         Array.from({length: 6}, async () => {
           const pokemonId = rng.next(0, TOTAL_POKEMON_COUNT - 1);
           const result = await P.getPokemonsList({ offset: pokemonId, limit: 1 });
@@ -64,11 +73,17 @@ function Game() {
           const pokemonData = P.getPokemonByName(pokemon.name);
           return pokemonData;
         })
-      ));
+      );
+      [...list].sort((a, b) => a.height - b.height).forEach((pokemon, i) => {pokemon.order = i});
+      setPokemonList(list);
     };
   
     fetchPokemon();
   }, []);
+
+  const correct = pokemonList.reduce((previous, current) => {
+    return previous + (current.correct ? 1 : 0);
+  }, 0)
   
   return <>
     <p>
@@ -76,7 +91,13 @@ function Game() {
     </p>
     <PokemonList pokemonList={pokemonList} onUp={moveUp} onDown={moveDown} />
     <p>
-      <button>Submit</button>
+      <button onClick={submit}>Submit</button>
+    </p>
+    <p>
+      Result: {correct} out of 6 correct
+    </p>
+    <p>
+      Attempts: {tries}
     </p>
   </>
 }
