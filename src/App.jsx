@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Game from './game/Game';
+import './App.css';
 
 function App() {
   const [gameStarted, setGameStarted] = useState(false);
@@ -10,7 +11,13 @@ function App() {
 
   return (
     <>
-      {gameStarted && <Game /> || <button onClick={startGame}>Play</button>}
+      <h1>Sort Them All!</h1>
+      {gameStarted && <Game /> || (
+        <div>
+          <p>Use the arrows to re-order the list according with the instructions.</p>
+          <button onClick={startGame}>Play</button>
+        </div>
+      )}
     </>
   );
 }

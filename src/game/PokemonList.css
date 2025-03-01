@@ -1,0 +1,66 @@
+.up, .down {
+  height: 48px;
+  width: 48px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+  color: white;
+  background: gray;
+  cursor: pointer;
+}
+
+.up:hover {
+  color: red;
+}
+
+.down:hover {
+  color: blue;
+}
+
+.up::before, .down::before {
+  content: "";
+  position: relative;
+  border: solid currentColor;
+  border-width: 10px 10px 0 0;
+  height: 20px;
+  width: 20px;
+}
+
+.up::before {
+  top: 7px;
+  transform: rotate(-45deg);
+}
+
+.down::before {
+  top: -7px;
+  transform: rotate(135deg);
+}
+
+.moving-up {
+  animation: 100ms ease-in-out forwards up;
+}
+
+@keyframes up {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(calc(-3px - 100%));
+  }
+}
+
+
+.moving-down {
+  animation: 100ms ease-in-out forwards down;
+}
+
+@keyframes down {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(calc(3px + 100%));
+  }
+}
