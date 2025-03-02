@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react';
 import Game from './game/Game';
 import './App.css';
-import { ApiDataContext } from './api/ApiDataProvider.jsx';
+import ApiDataContext from './api/ApiDataContext';
 
 function App() {
   const [gameStarted, setGameStarted] = useState(false);

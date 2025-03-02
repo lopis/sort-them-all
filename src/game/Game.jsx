@@ -60,14 +60,14 @@ function Game({pokemonList = []}) {
     <p>
       <button onClick={submit}>Submit</button>
     </p>
-    <p>
+    <div>
       <div>
         Result: {correct} out of 6 correct
       </div>
       <div>
         Attempts: {tries}
       </div>
-    </p>
+    </div>
   </>
 }
 

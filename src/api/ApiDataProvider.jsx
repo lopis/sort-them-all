@@ -1,16 +1,15 @@
-// ApiDataProvider.jsx
-import React, { createContext, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Pokedex } from 'pokeapi-js-wrapper';
 import Prando from 'prando';
+import ApiDataContext from './ApiDataContext';
 
 const P = new Pokedex();
 const TOTAL_POKEMON_COUNT = 1304;
+const OPTION_COUNT = 7;
 const seed = new Date().toISOString().split('T')[0];
 const rng = new Prando(seed);
 
-export const ApiDataContext = createContext();
-
-export const ApiDataProvider = ({ children }) => {
+const ApiDataProvider = ({ children }) => {
   const [pokemonList, setPokemonList] = useState([]);
   const [loading, setLoading] = useState(true);
   // const [error, setError] = useState(null);
@@ -21,7 +20,7 @@ export const ApiDataProvider = ({ children }) => {
        * @type Pokemon[]
        */
       const list = await Promise.all(
-        Array.from({length: 6}, async () => {
+        Array.from({length: OPTION_COUNT}, async () => {
           const pokemonId = rng.next(0, TOTAL_POKEMON_COUNT - 1);
           const result = await P.getPokemonsList({ offset: pokemonId, limit: 1 });
           const pokemon = result.results[0];
@@ -44,3 +43,5 @@ export const ApiDataProvider = ({ children }) => {
     </ApiDataContext.Provider>
   );
 };
+
+export default ApiDataProvider;
