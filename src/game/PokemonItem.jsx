@@ -8,20 +8,14 @@ import './PokemonItem.css'
  * @param {Function} props.onUp - Callback function to move the pokemon up.
  * @param {Function} props.onDown - Callback function to move the pokemon down.
  */
-function PokemonItem ({pokemon, onUp, onDown}) {
-  const movingClass = pokemon.movingUp ? 'moving-up'
-    : pokemon.movingDown ? 'moving-down'
-    : '';
-
+function PokemonItem ({item, dragHandleProps}) {
+  const pokemon = item;
   const correctClass = pokemon.correct ? 'correct' : ''
 
   return (
-    <div className={[movingClass, correctClass].join(' ')} style={{
-      display: "flex",
-      alignItems: "center",
-      background: "rgb(246, 194, 97)",
-      borderRadius: 99,
-    }}>
+    <div {...dragHandleProps}
+      className={[correctClass, 'item'].join(' ')}
+    >
       <div style={{
         borderRadius: 99,
         background: "white",
@@ -44,10 +38,6 @@ function PokemonItem ({pokemon, onUp, onDown}) {
         {pokemon.correct && <span>
           ({pokemon.height * 10} cm)
         </span>}
-      </div>
-      <div style={{marginRight: 10}}>
-        <div className="up" onClick={onUp}></div>
-        <div className="down" onClick={onDown}></div>
       </div>
     </div>
   )

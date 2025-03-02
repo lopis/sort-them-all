@@ -1,18 +1,22 @@
+import DraggableList from 'react-draggable-list';
 import PokemonItem from './PokemonItem'
 import './PokemonList.css'
 
-function PokemonList ({pokemonList = [], onUp, onDown}) {
+function PokemonList ({pokemonList = [], onListChange}) {
   return (
-    <div style={{
-      position: "relative",
-      display: "flex",
-      flexDirection: "column",
-      gap: 3,
-    }}>
-      {pokemonList.map((pokemon, i) => (
-        <PokemonItem key={i} pokemon={pokemon} onUp={() => onUp(i)} onDown={() => onDown(i)}/>
-      ))}
-    </div>
+    <DraggableList
+      list={pokemonList}
+      template={PokemonItem}
+      springConfig={{stiffness: 370, damping: 26}}
+      itemKey="name"
+      onMoveEnd={onListChange}
+      style={{
+        position: "relative",
+        display: "flex",
+        flexDirection: "column",
+        gap: 3,
+      }}
+    />
   );
 }
 

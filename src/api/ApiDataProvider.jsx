@@ -5,7 +5,7 @@ import ApiDataContext from './ApiDataContext';
 
 const P = new Pokedex();
 const TOTAL_POKEMON_COUNT = 1304;
-const OPTION_COUNT = 7;
+export const OPTION_COUNT = 7;
 const seed = new Date().toISOString().split('T')[0];
 const rng = new Prando(seed);
 
