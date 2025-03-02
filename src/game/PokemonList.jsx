@@ -22,19 +22,23 @@ function PokemonItem ({pokemon, onUp, onDown}) {
       background: "#ccd0d7",
       borderRadius: 99,
     }}>
-      <img
-        style={{
-          height: 64,
-          width: 64,
-          borderRadius: 99,
-          margin: 5,
-          background: "white",
-        }}
-        src={pokemon.sprites.front_default}
-      />
+      <div style={{
+        borderRadius: 99,
+        background: "white",
+        border: "1px solid #ccd0d7",
+      }}>
+        <img
+          style={{
+            height: 64,
+            width: 64,
+            display: 'block',
+          }}
+          src={pokemon?.sprites?.front_default}
+        />
+      </div>
       <div style={{flexGrow: 1}}>
         <span style={{textTransform: "capitalize"}}>
-          {pokemon.species.name}
+          {pokemon?.species?.name || pokemon.name}
         </span>
         &nbsp;
         {pokemon.correct && <span>

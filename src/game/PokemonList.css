@@ -1,5 +1,5 @@
 .up, .down {
-  height: 35px;
+  height: 30px;
   width: 48px;
   position: relative;
   display: flex;
@@ -38,32 +38,39 @@
 }
 
 .moving-up {
-  animation: 100ms ease-in-out forwards up;
+  animation: 200ms ease-in-out forwards up;
 }
 
 @keyframes up {
-  from {
-    transform: translateY(0);
+  0% {
+    transform: translateY(0) translateX(0);
   }
-  to {
-    transform: translateY(calc(-3px - 100%));
+  50% {
+    transform: translateY(calc((-3px - 100%) * 0.5)) translateX(50px);
+  }
+  100% {
+    transform: translateY(calc(-3px - 100%)) translateX(0);
   }
 }
 
 
 .moving-down {
-  animation: 100ms ease-in-out forwards down;
+  animation: 200ms ease-in-out forwards down;
 }
 
 @keyframes down {
-  from {
-    transform: translateY(0);
+  0% {
+    transform: translateY(0) translateX(0);
   }
-  to {
-    transform: translateY(calc(3px + 100%));
+  50% {
+    transform: translateY(calc((3px + 100%) * 0.5)) translateX(-50px);
+  }
+  100% {
+    transform: translateY(calc(3px + 100%)) translateX(0);
   }
 }
 
 .correct {
   background: greenyellow !important;
+  font-weight: bold;
 }
