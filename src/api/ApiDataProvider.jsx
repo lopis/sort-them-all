@@ -11,6 +11,7 @@ const rng = new Prando(`game_date_${seed}`);
 
 const ApiDataProvider = ({ children }) => {
   const [pokemonList, setPokemonList] = useState([]);
+  const [correctOrder, setCorrectOrder] = useState([]);
   const [loading, setLoading] = useState(true);
   // const [error, setError] = useState(null);
 
@@ -29,7 +30,7 @@ const ApiDataProvider = ({ children }) => {
           return pokemonData;
         })
       );
-      [...list].sort((a, b) => a.height - b.height).forEach((pokemon, i) => {pokemon.order = i});
+      setCorrectOrder([...list].sort((a, b) => a.height - b.height).map((pokemon) => pokemon.height));
       setPokemonList(list);
       setLoading(false);
     };
@@ -39,7 +40,7 @@ const ApiDataProvider = ({ children }) => {
   }, []);
 
   return (
-    <ApiDataContext.Provider value={{ pokemonList, loading }}>
+    <ApiDataContext.Provider value={{ pokemonList, correctOrder, loading }}>
       {children}
     </ApiDataContext.Provider>
   );

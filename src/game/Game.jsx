@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 
+import ApiDataContext from '../api/ApiDataContext';
 import PokemonList from './PokemonList.jsx'
 import { OPTION_COUNT } from '../api/ApiDataProvider.jsx';
 
 const MAX_TRIES = 4
 
-function Game({pokemonList = []}) {
+function Game() {
+  const { pokemonList, correctOrder } = useContext(ApiDataContext);
   const [pokemons, setPokemonList] = useState(pokemonList);
   const [gameDone, setGameDone] = useState(false);
   const [gameOver, setGameOver] = useState(false);
@@ -19,17 +21,17 @@ function Game({pokemonList = []}) {
     setTries(tries+1);
     setPokemonList(pokemons.map((pokemon, i) => ({
       ...pokemon,
-      correct: i === pokemon.order,
+      correct: correctOrder[i] === pokemon.height,
     })));
   }
   
 
 
-  const correct = pokemons.reduce((previous, current) => {
+  const correctCount = pokemons.reduce((previous, current) => {
     return previous + (current.correct ? 1 : 0);
   }, 0)
 
-  if (!gameDone && correct === OPTION_COUNT) {
+  if (!gameDone && correctCount === OPTION_COUNT) {
     setGameDone(true);
     setTries(tries-1);
   } else if (!gameOver && tries === MAX_TRIES) {
@@ -55,7 +57,7 @@ function Game({pokemonList = []}) {
     </p>
     <div>
       <div>
-        {correct} out of {OPTION_COUNT} correct
+        {correctCount} out of {OPTION_COUNT} correct
       </div>
       <div>
         Attempt {tries + 1} of {MAX_TRIES}
