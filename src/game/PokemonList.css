@@ -9,12 +9,12 @@
   cursor: pointer;
 }
 
-.up:hover {
-  color: red;
+.correct .up, .correct .down {
+  color: rgba(255,255,255,0.5);
 }
 
-.down:hover {
-  color: blue;
+.up:hover, .down:hover {
+  color: white;
 }
 
 .up::before, .down::before {
@@ -74,8 +74,4 @@
 	background: #009139 !important;
 	font-weight: bold;
 	color: white;
-}
-
-.correct .up, .correct .down {
-  visibility: hidden;
 }
