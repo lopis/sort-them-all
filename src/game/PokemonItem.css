@@ -3,12 +3,33 @@
   align-items: center;
   background: rgb(246, 194, 97);
   border-radius: 99px;
+  height: 48px;
   max-height: 100%;
   touch-action: none;
+  margin-left: 20px;
 }
 
 .correct {
 	background: #009139 !important;
 	font-weight: bold;
 	color: white;
+}
+
+.sprite {
+  border-radius: 99px;
+  height: 48px;
+  width: 48px;
+  box-sizing: border-box;
+  background: white;
+  border: 1px solid rgb(158, 103, 0);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sprite img {
+	height: 96px;
+	width: 96px;
+	display: block;
 }

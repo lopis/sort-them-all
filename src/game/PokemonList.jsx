@@ -10,6 +10,7 @@ function PokemonList ({pokemonList = [], onListChange}) {
       springConfig={{stiffness: 370, damping: 26}}
       itemKey="name"
       onMoveEnd={onListChange}
+      unsetZIndex
       style={{
         position: "relative",
         display: "flex",

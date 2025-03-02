@@ -16,21 +16,11 @@ function PokemonItem ({item, dragHandleProps}) {
     <div {...dragHandleProps}
       className={[correctClass, 'item'].join(' ')}
     >
-      <div style={{
-        borderRadius: 99,
-        background: "white",
-        border: "1px solid #9e6700",
-      }}>
-        <img
-          style={{
-            height: 64,
-            width: 64,
-            display: 'block',
-          }}
-          src={pokemon?.sprites?.front_default}
+      <div className='sprite'>
+        <img src={pokemon?.sprites?.front_default}
         />
       </div>
-      <div style={{flexGrow: 1}}>
+      <div style={{flexBasis: "calc(100% - 68px)"}}>
         <span style={{textTransform: "capitalize"}}>
           {pokemon?.species?.name || pokemon.name}
         </span>
