@@ -10,7 +10,8 @@ import './PokemonItem.css'
  */
 function PokemonItem ({item, dragHandleProps}) {
   const pokemon = item;
-  const correctClass = pokemon.correct ? 'correct' : ''
+  const correctClass = pokemon.correct ? 'correct' : 
+    pokemon.incorrect ? 'incorrect' : ''
 
   return (
     <div {...dragHandleProps}
@@ -25,7 +26,7 @@ function PokemonItem ({item, dragHandleProps}) {
           {pokemon?.species?.name || pokemon.name}
         </span>
         &nbsp;
-        {pokemon.correct && <span>
+        {(pokemon.correct || pokemon.incorrect) && <span>
           ({pokemon.height * 10} cm)
         </span>}
       </div>

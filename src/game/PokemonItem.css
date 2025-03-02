@@ -15,6 +15,12 @@
 	color: white;
 }
 
+.incorrect {
+	background: #eb2721 !important;
+	font-weight: bold;
+	color: white;
+}
+
 .sprite {
   border-radius: 99px;
   height: 48px;
