@@ -13,7 +13,7 @@ function App() {
     <>
       <h1>Sort Them All!</h1>
       {gameStarted && <Game /> || (
-        <div>
+        <div style={{flexGrow: 1}}>
           <p>
             Drag the items of the list to sort them in <strong>ascending</strong> order.
           </p>
@@ -23,6 +23,9 @@ function App() {
           <button onClick={startGame}>Play</button>
         </div>
       )}
+      <footer>
+        by <a href="https://github.com/lopis/sort-them-all">@lopis</a>
+      </footer>
     </>
   );
 }
