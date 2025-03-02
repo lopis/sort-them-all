@@ -9,9 +9,21 @@ export const OPTION_COUNT = 7;
 const seed = new Date().toISOString().split('T')[0];
 const rng = new Prando(`game_date_${seed}`);
 
+const criteriaList = [
+  'height',
+  'weight',
+  'attack',
+  'hp',
+  'defense',
+  'special-attack',
+  'special-defense',
+  'speed',
+]
+
 const ApiDataProvider = ({ children }) => {
   const [pokemonList, setPokemonList] = useState([]);
   const [correctOrder, setCorrectOrder] = useState([]);
+  const [sortingCriteria, setSortingCriteria] = useState('');
   const [loading, setLoading] = useState(true);
   // const [error, setError] = useState(null);
 
@@ -26,12 +38,17 @@ const ApiDataProvider = ({ children }) => {
           const pokemonId = rng.next(0, TOTAL_POKEMON_COUNT - 1);
           const result = await P.getPokemonsList({ offset: pokemonId, limit: 1 });
           const pokemon = result.results[0];
-          const pokemonData = P.getPokemonByName(pokemon.name);
+          const pokemonData = await P.getPokemonByName(pokemon.name);
+          pokemonData.stats.forEach(({base_stat, stat}) => {
+            pokemonData[stat.name] = base_stat
+          });
           return pokemonData;
         })
       );
-      setCorrectOrder([...list].sort((a, b) => a.height - b.height).map((pokemon) => pokemon.height));
       setPokemonList(list);
+      const criterion = rng.nextArrayItem(criteriaList);
+      setSortingCriteria(criterion);
+      setCorrectOrder([...list].sort((a, b) => a[criterion] - b[criterion]).map((pokemon) => pokemon[criterion]));
       setLoading(false);
     };
   
@@ -40,7 +57,7 @@ const ApiDataProvider = ({ children }) => {
   }, []);
 
   return (
-    <ApiDataContext.Provider value={{ pokemonList, correctOrder, loading }}>
+    <ApiDataContext.Provider value={{ pokemonList, sortingCriteria, correctOrder, loading }}>
       {children}
     </ApiDataContext.Provider>
   );

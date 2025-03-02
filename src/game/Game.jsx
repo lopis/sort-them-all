@@ -7,7 +7,7 @@ import { OPTION_COUNT } from '../api/ApiDataProvider.jsx';
 const MAX_TRIES = 4
 
 function Game() {
-  const { pokemonList, correctOrder } = useContext(ApiDataContext);
+  const { pokemonList, sortingCriteria, correctOrder } = useContext(ApiDataContext);
   const [pokemons, setPokemonList] = useState(pokemonList);
   const [gameDone, setGameDone] = useState(false);
   const [gameOver, setGameOver] = useState(false);
@@ -21,7 +21,7 @@ function Game() {
     setTries(tries+1);
     setPokemonList(pokemons.map((pokemon, i) => ({
       ...pokemon,
-      correct: correctOrder[i] === pokemon.height,
+      correct: correctOrder[i] === pokemon[sortingCriteria],
     })));
   }
   
@@ -44,7 +44,7 @@ function Game() {
   
   return <>
     <p>
-      Sort by: <strong>height</strong>
+      Sort by: <strong>{sortingCriteria.replace(/_-/, ' ').replace('hp', 'HP')}</strong>
     </p>
     <PokemonList pokemonList={pokemons} onListChange={onListChange} />
     <p>

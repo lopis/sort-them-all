@@ -7,6 +7,7 @@
   max-height: 100%;
   touch-action: none;
   margin-left: 20px;
+  box-shadow: -5px -5px #00000030 inset;
 }
 
 .correct {
@@ -27,7 +28,8 @@
   width: 48px;
   box-sizing: border-box;
   background: white;
-  border: 1px solid rgb(158, 103, 0);
+  border: 2px solid #00000030;
+  background-clip: content-box;
   position: relative;
   display: flex;
   justify-content: center;

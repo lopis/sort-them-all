@@ -1,4 +1,15 @@
+import { useContext } from 'react';
+import ApiDataContext from '../api/ApiDataContext';
 import './PokemonItem.css'
+
+const valueFormatters = {
+  height: (value) => `${value * 10} cm`,
+  weight: (value) => `${value / 100} kg`,
+}
+
+const formatValue = (value, criterion) => {
+  return valueFormatters[criterion] ? valueFormatters[criterion](value) : value
+}
 
 /**
  * Component to display a single Pokemon item with controls to move it up or down.
@@ -9,6 +20,7 @@ import './PokemonItem.css'
  * @param {Function} props.onDown - Callback function to move the pokemon down.
  */
 function PokemonItem ({item, dragHandleProps}) {
+  const { sortingCriteria } = useContext(ApiDataContext);
   const pokemon = item;
   const correctClass = pokemon.correct ? 'correct' : 
     pokemon.incorrect ? 'incorrect' : ''
@@ -27,7 +39,7 @@ function PokemonItem ({item, dragHandleProps}) {
         </span>
         &nbsp;
         {(pokemon.correct || pokemon.incorrect) && <span>
-          ({pokemon.height * 10} cm)
+          ({formatValue(pokemon[sortingCriteria], sortingCriteria)})
         </span>}
       </div>
     </div>
