@@ -16,7 +16,7 @@ function App() {
       <h1>Sort Them All!</h1>
       {gameStarted && <Game pokemonList={pokemonList}/> || (
         <div>
-          <p>Use the arrows to re-order the list according with the instructions.</p>
+          <p>Drag the items of the list to sort them in <strong>ascending</strong> order.</p>
           <button onClick={startGame}>Play</button>
         </div>
       )}
