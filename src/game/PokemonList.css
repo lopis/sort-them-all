@@ -5,7 +5,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: gray;
+  color: #9e6700;
   cursor: pointer;
 }
 
@@ -71,6 +71,11 @@
 }
 
 .correct {
-  background: greenyellow !important;
-  font-weight: bold;
+	background: #009139 !important;
+	font-weight: bold;
+	color: white;
+}
+
+.correct .up, .correct .down {
+  visibility: hidden;
 }

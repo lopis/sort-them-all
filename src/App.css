@@ -11,13 +11,28 @@ body {
 	font-size: 20px;
 	font-family: sans-serif;
 	box-sizing: border-box;
+	background: linear-gradient(#fff5cd, #f5c873);
 }
 
 button {
 	font-size: 1em;
 	padding: 10px 20px;
+	border: none;
+	color: #ffcb04;
+	border-radius: 99px;
+	background: #39569E;
+	font-weight: bold;
 }
 
 h1 {
 	margin-top: 0;
+	font-family: "Joti One";
+	position: relative;
+	color: #ffcb04;
+	text-shadow: 3px 3px 0 #39569E, -1px -1px 0 #39569E, 1px -1px 0 #39569E, -1px 4px 0 #39569E, 1px 1px 0 #39569E;
+}
+
+@font-face {
+  font-family: 'Joti One';
+  src: url('JotiOne-Regular.ttf') format('truetype');
 }

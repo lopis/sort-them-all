@@ -19,13 +19,13 @@ function PokemonItem ({pokemon, onUp, onDown}) {
     <div className={[movingClass, correctClass].join(' ')} style={{
       display: "flex",
       alignItems: "center",
-      background: "#ccd0d7",
+      background: "rgb(246, 194, 97)",
       borderRadius: 99,
     }}>
       <div style={{
         borderRadius: 99,
         background: "white",
-        border: "1px solid #ccd0d7",
+        border: "1px solid #9e6700",
       }}>
         <img
           style={{
