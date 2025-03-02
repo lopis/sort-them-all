@@ -7,7 +7,7 @@ const P = new Pokedex();
 const TOTAL_POKEMON_COUNT = 1304;
 export const OPTION_COUNT = 7;
 const seed = new Date().toISOString().split('T')[0];
-const rng = new Prando(seed);
+const rng = new Prando(`game_date_${seed}`);
 
 const ApiDataProvider = ({ children }) => {
   const [pokemonList, setPokemonList] = useState([]);
@@ -19,6 +19,7 @@ const ApiDataProvider = ({ children }) => {
       /**
        * @type Pokemon[]
        */
+      rng.reset();
       const list = await Promise.all(
         Array.from({length: OPTION_COUNT}, async () => {
           const pokemonId = rng.next(0, TOTAL_POKEMON_COUNT - 1);
