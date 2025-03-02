@@ -5,7 +5,7 @@ import { ApiDataContext } from './api/ApiDataProvider.jsx';
 
 function App() {
   const [gameStarted, setGameStarted] = useState(false);
-  const { pokemonList, loading, error } = useContext(ApiDataContext);
+  const { pokemonList } = useContext(ApiDataContext);
 
   const startGame = async () => {  
     setGameStarted(true);
