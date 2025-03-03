@@ -9,6 +9,7 @@
   margin-left: 20px;
   box-shadow: -5px -5px #00000030 inset;
   user-select: none;
+  cursor: grab;
 }
 
 .correct {

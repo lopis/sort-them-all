@@ -1,5 +1,7 @@
 .message {
-  line-height: 48px;
+	line-height: 48px;
+	font-size: 1.2em;
+	font-weight: bold;
 }
 
 .pokeball {

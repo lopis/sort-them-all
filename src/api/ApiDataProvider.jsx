@@ -29,9 +29,6 @@ const ApiDataProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchPokemon = async () => {
-      /**
-       * @type Pokemon[]
-       */
       rng.reset();
       const list = await Promise.all(
         Array.from({ length: OPTION_COUNT }, async () => {
@@ -45,8 +42,9 @@ const ApiDataProvider = ({ children }) => {
           return pokemonData;
         })
       );
-      setPokemonList(list);
+      rng.reset();
       const criterion = rng.nextArrayItem(criteriaList);
+      setPokemonList(list);
       setSortingCriteria(criterion);
       setCorrectOrder([...list].sort((a, b) => a[criterion] - b[criterion]).map((pokemon) => pokemon[criterion]));
       setLoading(false);

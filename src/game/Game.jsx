@@ -44,9 +44,9 @@ function Game() {
   }
   
   return <>
-    <p>
+    <h2>
       Sort by: <strong>{sortingCriteria.replace(/_-/, ' ').replace('hp', 'HP')}</strong>
-    </p>
+    </h2>
     <div style={{ pointerEvents: gameDone || gameOver ? 'none' : 'initial' }}>
       <PokemonList pokemonList={pokemons} onListChange={onListChange} />
     </div>
