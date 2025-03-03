@@ -39,9 +39,14 @@ function PokemonItem ({ item, dragHandleProps }) {
           {pokemon?.species?.name || pokemon.name}
         </span>
         &nbsp;
-        {(pokemon.correct || pokemon.incorrect) && <span>
-          ({formatValue(pokemon[sortingCriteria], sortingCriteria)})
-        </span>}
+        {(pokemon.correct || pokemon.incorrect) && (
+          <>
+            <span>
+              ({formatValue(pokemon[sortingCriteria], sortingCriteria)})
+            </span>
+            {pokemon.isGmax && <span class="gmax">Gmax</span>}
+          </>
+        )}
       </div>
     </div>
   )

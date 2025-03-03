@@ -43,3 +43,16 @@
 	width: 96px;
 	display: block;
 }
+
+.gmax {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  font-size: 0.7em;
+  font-weight: normal;
+  background: var(--black);
+  color: white;
+  border-radius: 6px;
+  padding: 0 3px;
+  opacity: 0.8;
+}

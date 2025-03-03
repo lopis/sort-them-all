@@ -39,6 +39,7 @@ const ApiDataProvider = ({ children }) => {
           pokemonData.stats.forEach(({ base_stat, stat }) => {
             pokemonData[stat.name] = base_stat
           });
+          pokemonData.isGmax = pokemon.name.endsWith('gmax');
           return pokemonData;
         })
       );
