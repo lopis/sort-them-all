@@ -12,4 +12,4 @@ The data used in this game is provided by the [PokéAPI](https://pokeapi.co/) us
 
 ## Disclaimer
 
-This game is not affiliated, endorsed, or associated with Nintendo, Game Freak, or The Pokémon Company. Pokémon and all related trademarks are the property of their respective owners.
+This game is not affiliated, endorsed, or associated with Nintendo, Game Freak, or The Pokémon Company. Pokémon and all related trademarks are the property of their respective owners. It's only a fan project and not created for commercial purposes.
