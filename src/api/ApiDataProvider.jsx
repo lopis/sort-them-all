@@ -34,12 +34,12 @@ const ApiDataProvider = ({ children }) => {
        */
       rng.reset();
       const list = await Promise.all(
-        Array.from({length: OPTION_COUNT}, async () => {
+        Array.from({ length: OPTION_COUNT }, async () => {
           const pokemonId = rng.next(0, TOTAL_POKEMON_COUNT - 1);
           const result = await P.getPokemonsList({ offset: pokemonId, limit: 1 });
           const pokemon = result.results[0];
           const pokemonData = await P.getPokemonByName(pokemon.name);
-          pokemonData.stats.forEach(({base_stat, stat}) => {
+          pokemonData.stats.forEach(({ base_stat, stat }) => {
             pokemonData[stat.name] = base_stat
           });
           return pokemonData;

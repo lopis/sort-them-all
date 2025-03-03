@@ -28,6 +28,11 @@ export default [
         'warn',
         { allowConstantExport: true },
       ],
+      'indent': ['error', 2],
+      'multiline-ternary': ['error', 'always-multiline'],
+      'object-curly-spacing': ['error', 'always'],
+      'comma-spacing': ['error', { before: false, after: true }],
+      'quotes': ['error', 'single'],
     },
   },
 ]

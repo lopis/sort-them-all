@@ -19,10 +19,11 @@ const formatValue = (value, criterion) => {
  * @param {Function} props.onUp - Callback function to move the pokemon up.
  * @param {Function} props.onDown - Callback function to move the pokemon down.
  */
-function PokemonItem ({item, dragHandleProps}) {
+function PokemonItem ({ item, dragHandleProps }) {
   const { sortingCriteria } = useContext(ApiDataContext);
   const pokemon = item;
-  const correctClass = pokemon.correct ? 'correct' : 
+  const correctClass = pokemon.correct
+    ? 'correct' : 
     pokemon.incorrect ? 'incorrect' : ''
 
   return (
@@ -33,8 +34,8 @@ function PokemonItem ({item, dragHandleProps}) {
         <img src={pokemon?.sprites?.front_default}
         />
       </div>
-      <div style={{flexBasis: "calc(100% - 68px)"}}>
-        <span style={{textTransform: "capitalize"}}>
+      <div style={{ flexBasis: 'calc(100% - 68px)' }}>
+        <span style={{ textTransform: 'capitalize' }}>
           {pokemon?.species?.name || pokemon.name}
         </span>
         &nbsp;

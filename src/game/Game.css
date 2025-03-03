@@ -1,0 +1,33 @@
+.pokeball {
+	height: 20px;
+	width: 20px;
+  border: 2px solid var(--black);
+	background: linear-gradient(180deg, var(--red) 9px, var(--black) 9px, var(--black) 11px, white 11px);
+	display: inline-flex;
+	border-radius: 99px;
+	margin: 15px 3px;
+  transition: all 500ms ease-in-out;
+}
+
+.pokeball.fainted {
+  animation: shake 200ms forwards;
+  filter: saturate(0) brightness(0.5);
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0%);
+  }
+  25% {
+    transform: translateX(25%);
+  }
+  50% {
+    transform: translateX(-10%);
+  }
+  75% {
+    transform: translateX(5%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}

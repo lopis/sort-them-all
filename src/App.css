@@ -1,5 +1,17 @@
+:root {
+	--red: #fc4740;
+	--green: #009139;
+	--black: #183641;
+}
+
 html {
-  height: 100%;
+	height: 100%;
+}
+
+#root {
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
 }
 
 body {
@@ -12,12 +24,7 @@ body {
 	font-family: sans-serif;
 	box-sizing: border-box;
 	background: linear-gradient(#fff5cd, #f5c873) fixed;
-}
-
-#root {
-	display: flex;
-	flex-direction: column;
-	min-height: 100%;
+	color: var(--black);
 }
 
 button {

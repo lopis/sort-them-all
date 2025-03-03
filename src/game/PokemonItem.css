@@ -11,13 +11,13 @@
 }
 
 .correct {
-	background: #009139 !important;
+	background: var(--green) !important;
 	font-weight: bold;
 	color: white;
 }
 
 .incorrect {
-	background: #eb2721 !important;
+	background: var(--red) !important;
 	font-weight: bold;
 	color: white;
 }

@@ -3,6 +3,7 @@ import { useState, useContext } from 'react';
 import ApiDataContext from '../api/ApiDataContext';
 import PokemonList from './PokemonList.jsx'
 import { OPTION_COUNT } from '../api/ApiDataProvider.jsx';
+import './Game.css';
 
 const MAX_TRIES = 4
 
@@ -50,17 +51,22 @@ function Game() {
     <p>
       {
         gameDone ? 
-        <span>🎉 Great!</span>
-        : gameOver ?
-        <span>😵 Game Over</span>
-        : <button onClick={submit}>Submit</button>}
+          <span>🎉 Great!</span>
+          : gameOver ?
+            <span>😵 Game Over</span>
+            : <button onClick={submit}>Submit</button>
+      }
     </p>
     <div>
       <div>
-        {correctCount} out of {OPTION_COUNT} correct
+        {correctCount} out of {OPTION_COUNT} in the correct position
       </div>
       <div>
-        Attempt {tries + 1} of {MAX_TRIES}
+        {Array.from({ length: MAX_TRIES }).map((_, i) => (
+          <div key={i} className={`pokeball ${i > (MAX_TRIES - tries - 1) ? 'fainted' : ''}`}>
+
+          </div>
+        ))}
       </div>
     </div>
   </>
