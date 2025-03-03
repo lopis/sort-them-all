@@ -11,12 +11,7 @@ function PokemonList ({ pokemonList = [], onListChange }) {
       itemKey="name"
       onMoveEnd={onListChange}
       unsetZIndex
-      style={{
-        position: 'relative',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 3,
-      }}
+      constrainDrag
     />
   );
 }

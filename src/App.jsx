@@ -38,14 +38,20 @@ function App() {
         {gameStarted && <Game /> || (
           <div>
             <p>
-              Drag the items of the list to sort them in <strong>ascending</strong> order.
+              Drag the items of the list to sort them in <strong>ascending</strong> order according to the given criteria.
+              You have 4 chances to guess the correct order.
+            </p>
+            <p>
+              Keep in mind that some Pokémon have <strong>multiple forms</strong>. Pay attention to their image when sorting them.
             </p>
             <p>
               A new challenge is created each day.
               <br />
               The next challenge will begin in {timeRemaining}.
             </p>
-            <button onClick={startGame}>Play</button>
+            <p>
+              <button onClick={startGame}>Play</button>
+            </p>
           </div>
         )}
       </div>

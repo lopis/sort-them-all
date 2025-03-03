@@ -28,6 +28,7 @@ body {
 }
 
 button {
+	position: relative;
 	font-size: 1em;
 	padding: 10px 20px;
 	border: none;
@@ -35,6 +36,28 @@ button {
 	border-radius: 99px;
 	background: #39569E;
 	font-weight: bold;
+	transition: all 50ms ease-in-out;
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 99px;
+  background: #39569E;
+  transition: margin 50ms ease-in-out;
+	z-index: -1;
+}
+
+button:hover::before {
+  margin: -3px;
+}
+
+button:active {
+	transform: translate(3px, 3px);
 }
 
 h1 {

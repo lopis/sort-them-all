@@ -47,13 +47,15 @@ function Game() {
     <p>
       Sort by: <strong>{sortingCriteria.replace(/_-/, ' ').replace('hp', 'HP')}</strong>
     </p>
-    <PokemonList pokemonList={pokemons} onListChange={onListChange} />
+    <div style={{ pointerEvents: gameDone || gameOver ? 'none' : 'initial' }}>
+      <PokemonList pokemonList={pokemons} onListChange={onListChange} />
+    </div>
     <p>
       {
         gameDone ? 
-          <span>🎉 Great!</span>
+          <span class="message">🎉 Great!</span>
           : gameOver ?
-            <span>😵 Game Over</span>
+            <span class="message">😵 Game Over</span>
             : <button onClick={submit}>Submit</button>
       }
     </p>
@@ -63,9 +65,7 @@ function Game() {
       </div>
       <div>
         {Array.from({ length: MAX_TRIES }).map((_, i) => (
-          <div key={i} className={`pokeball ${i > (MAX_TRIES - tries - 1) ? 'fainted' : ''}`}>
-
-          </div>
+          <div key={i} className={`pokeball ${i > (MAX_TRIES - tries - 1) ? 'fainted' : ''}`}></div>
         ))}
       </div>
     </div>
