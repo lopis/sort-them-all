@@ -20,6 +20,26 @@ const criteriaList = [
   'speed',
 ]
 
+const hyphenatedPokemonNames = [
+  'Ho-oh',
+  'Porygon-Z',
+  'Jangmo-o',
+  'Hakamo-o',
+  'Kommo-o',
+  'Wo-Chien',
+  'Chien-Pao',
+  'Ting-Lu',
+  'Chi-Yu',
+]
+
+const shuffleArray = (array) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
 const ApiDataProvider = ({ children }) => {
   const [pokemonList, setPokemonList] = useState([]);
   const [correctOrder, setCorrectOrder] = useState([]);
@@ -40,12 +60,15 @@ const ApiDataProvider = ({ children }) => {
             pokemonData[stat.name] = base_stat
           });
           pokemonData.isGmax = pokemon.name.endsWith('gmax');
+          if (pokemon.name.includes('-') && !hyphenatedPokemonNames.some(name => pokemon.name.includes(name))) {
+            pokemonData.label = pokemon.name.split('-')[1]; // TODO: is there always just one hyphen on can there be more?
+          }
           return pokemonData;
         })
       );
       rng.reset();
       const criterion = rng.nextArrayItem(criteriaList);
-      setPokemonList(list);
+      setPokemonList(shuffleArray(list));
       setSortingCriteria(criterion);
       setCorrectOrder([...list].sort((a, b) => a[criterion] - b[criterion]).map((pokemon) => pokemon[criterion]));
       setLoading(false);

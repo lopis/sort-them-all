@@ -33,7 +33,7 @@ function App() {
 
   return (
     <>
-      <h1>Sort Them All!</h1>
+      <h1><a href="">Sort Them All!</a></h1>
       <div style={{ flexGrow: 1 }}>
         {gameStarted && <Game /> || (
           <div>
@@ -42,12 +42,13 @@ function App() {
               You have 4 chances to guess the correct order.
             </p>
             <p>
-              Keep in mind that some Pokémon have <strong>multiple forms</strong>. Pay attention to their image when sorting them.
+              Keep in mind that some Pokémon species occur in <strong>multiple forms</strong> with different stats.
+              Pay attention to their image when sorting them.
             </p>
             <p>
-              A new challenge is created each day.
+              A new challenge is created each day at midnight UTC+0.
               <br />
-              The next challenge will begin in {timeRemaining}.
+              The next challenge begins in {timeRemaining}.
             </p>
             <p>
               <button onClick={startGame}>Play</button>

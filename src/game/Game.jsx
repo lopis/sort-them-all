@@ -50,7 +50,12 @@ function Game() {
     <div style={{ pointerEvents: gameDone || gameOver ? 'none' : 'initial' }}>
       <PokemonList pokemonList={pokemons} onListChange={onListChange} />
     </div>
-    <p>
+    <div>
+      {Array.from({ length: MAX_TRIES }).map((_, i) => (
+        <div key={i} className={`pokeball ${i > (MAX_TRIES - tries - 1) ? 'fainted' : ''}`}></div>
+      ))}
+    </div>
+    <div>
       {
         gameDone ? 
           <span class="message">🎉 Great!</span>
@@ -58,17 +63,10 @@ function Game() {
             <span class="message">😵 Game Over</span>
             : <button onClick={submit}>Submit</button>
       }
-    </p>
-    <div>
-      <div>
-        {correctCount} out of {OPTION_COUNT} in the correct position
-      </div>
-      <div>
-        {Array.from({ length: MAX_TRIES }).map((_, i) => (
-          <div key={i} className={`pokeball ${i > (MAX_TRIES - tries - 1) ? 'fainted' : ''}`}></div>
-        ))}
-      </div>
     </div>
+    <p>
+      {correctCount} out of {OPTION_COUNT} in the correct position
+    </p>
   </>
 }
 

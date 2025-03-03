@@ -40,14 +40,14 @@ function PokemonItem ({ item, dragHandleProps }) {
         </span>
         &nbsp;
         {(pokemon.correct || pokemon.incorrect) && (
-          <>
-            <span>
-              ({formatValue(pokemon[sortingCriteria], sortingCriteria)})
-            </span>
-            {pokemon.isGmax && <span class="gmax">Gmax</span>}
-          </>
+          <span>
+            ({formatValue(pokemon[sortingCriteria], sortingCriteria)})
+          </span>
         )}
       </div>
+      {(pokemon.correct || pokemon.incorrect) && pokemon.label && (
+        <span className="label">{pokemon.label}</span>
+      )}
     </div>
   )
 }
