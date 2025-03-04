@@ -12,6 +12,7 @@ function PokemonList ({ pokemonList = [], onListChange }) {
       onMoveEnd={onListChange}
       unsetZIndex
       constrainDrag
+      lockedItems={pokemonList.filter(item => item.correct).map(item => item.name)}
     />
   );
 }

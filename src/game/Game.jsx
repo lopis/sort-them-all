@@ -58,9 +58,9 @@ function Game() {
     <div>
       {
         gameDone ? 
-          <span class="message">🎉 Great!</span>
+          <span className="message">🎉 Great!</span>
           : gameOver ?
-            <span class="message">😵 Game Over</span>
+            <span className="message">😵 Game Over</span>
             : <button onClick={submit}>Submit</button>
       }
     </div>
