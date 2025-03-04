@@ -1372,9 +1372,9 @@ react-dom@^19.0.0:
   dependencies:
     scheduler "^0.25.0"
 
-"react-draggable-list@file:./lib/react-draggable-list/react-draggable-list-v4.2.1.tgz":
+"react-draggable-list@file:./lib/react-draggable-list/react-draggable-list-v4.2.3.tgz":
   version "4.2.1"
-  resolved "file:./lib/react-draggable-list/react-draggable-list-v4.2.1.tgz#0f177d2046142f28f23c020b635a07ec556c79e3"
+  resolved "file:./lib/react-draggable-list/react-draggable-list-v4.2.3.tgz#a031ce31e93d5d826bfa27ab29417bfd9d365398"
   dependencies:
     "@babel/runtime" "^7.0.0"
     "@types/prop-types" "^15.7.3"
