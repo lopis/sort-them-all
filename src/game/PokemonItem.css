@@ -45,6 +45,7 @@
 	width: 96px;
 	display: block;
   filter: drop-shadow(3px 3px 1px #ab7a1e4f);
+  z-index: 1;
 }
 
 .label {
