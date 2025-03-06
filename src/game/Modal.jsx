@@ -5,6 +5,7 @@ import { OPTION_COUNT } from '../api/ApiDataProvider';
 
 const Modal = ({ scores, gameNumber, onClose }) => {
   const [closing, setClosing] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   const close = () => {
     setClosing(true);
@@ -29,7 +30,12 @@ const Modal = ({ scores, gameNumber, onClose }) => {
         url: window.location.href,
       }).catch((error) => console.error('Error sharing', error));
     } else {
-      alert('Web Share API is not supported in your browser.');
+      navigator.clipboard.writeText(shareText.join('\n')).then(() => {
+        setCopied(true);
+        setTimeout(() => {
+          setCopied(false);
+        }, 1000);
+      }).catch((error) => console.error('Error copying to clipboard', error));
     }
   }
 
@@ -49,7 +55,7 @@ const Modal = ({ scores, gameNumber, onClose }) => {
       </p>
       <ScoreTable scores={scores} />
       <div class="buttonGroup">
-        <button onClick={share}>Share</button>
+        <button onClick={share}>{copied ? 'Copied' : 'Share'}</button>
         <button onClick={close}>Close</button>
       </div>
     </div>
