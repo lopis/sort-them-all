@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Game from './game/Game';
 import './App.css';
+import ApiDataContext from './api/ApiDataContext';
 
 const getTimeRemaining = () => {
   const now = new Date();
@@ -16,6 +17,7 @@ const getTimeRemaining = () => {
 function App() {
   const [gameStarted, setGameStarted] = useState(false);
   const [timeRemaining, setTimeRemaning] = useState(getTimeRemaining());
+  const { gameNumber } = useContext(ApiDataContext);
 
   const startGame = async () => {  
     setGameStarted(true);
@@ -51,7 +53,7 @@ function App() {
               The next challenge begins in {timeRemaining}.
             </p>
             <p>
-              <button onClick={startGame}>Play</button>
+              <button onClick={startGame}>Play Game #{gameNumber}</button>
             </p>
           </div>
         )}

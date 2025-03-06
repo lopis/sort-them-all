@@ -2,6 +2,7 @@
 	--red: #fc4740;
 	--green: #009139;
 	--black: #183641;
+	--blue: #39569E;
 }
 
 html {
@@ -34,7 +35,7 @@ button {
 	border: none;
 	color: #ffcb04;
 	border-radius: 99px;
-	background: #39569E;
+	background: var(--blue);
 	font-weight: bold;
 	transition: all 50ms ease-in-out;
 }
@@ -47,7 +48,7 @@ button::before {
   right: 0;
   bottom: 0;
   border-radius: 99px;
-  background: #39569E;
+  background: var(--blue);
   transition: margin 50ms ease-in-out;
 	z-index: -1;
 }
@@ -65,7 +66,7 @@ h1, h1 a {
 	font-family: "Joti One";
 	position: relative;
 	color: #ffcb04;
-	text-shadow: 3px 3px 0 #39569E, -1px -1px 0 #39569E, 1px -1px 0 #39569E, -1px 4px 0 #39569E, 1px 1px 0 #39569E;
+	text-shadow: 3px 3px 0 var(--blue), -1px -1px 0 var(--blue), 1px -1px 0 var(--blue), -1px 4px 0 var(--blue), 1px 1px 0 var(--blue);
 	text-decoration: none;
 }
 
@@ -77,4 +78,12 @@ h2 {
 @font-face {
   font-family: 'Joti One';
   src: url('./assets/JotiOne-Regular.ttf') format('truetype');
+}
+
+footer {
+	font-size: 80%;
+}
+
+footer a, footer a:visited {
+	color: var(--blue);
 }

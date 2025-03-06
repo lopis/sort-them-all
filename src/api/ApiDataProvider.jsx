@@ -6,8 +6,7 @@ import ApiDataContext from './ApiDataContext';
 const P = new Pokedex();
 const TOTAL_POKEMON_COUNT = 1304;
 export const OPTION_COUNT = 7;
-const seed = new Date().toISOString().split('T')[0];
-const rng = new Prando(`game_date_${seed}`);
+const startingDate = new Date('2025/03/01');
 
 const criteriaList = [
   'height',
@@ -45,41 +44,45 @@ const ApiDataProvider = ({ children }) => {
   const [correctOrder, setCorrectOrder] = useState([]);
   const [sortingCriteria, setSortingCriteria] = useState('');
   const [loading, setLoading] = useState(true);
-  // const [error, setError] = useState(null);
+
+  const daysSinceStart = Math.floor((new Date() - startingDate) / (1000 * 60 * 60 * 24));
+  const [gameNumber] = useState(daysSinceStart);
+
+  const fetchPokemon = async (rng) => {
+    rng.reset();
+    const list = await Promise.all(
+      Array.from({ length: OPTION_COUNT }, async () => {
+        const pokemonId = rng.next(0, TOTAL_POKEMON_COUNT - 1);
+        const result = await P.getPokemonsList({ offset: pokemonId, limit: 1 });
+        const pokemon = result.results[0];
+        const pokemonData = await P.getPokemonByName(pokemon.name);
+        pokemonData.stats.forEach(({ base_stat, stat }) => {
+          pokemonData[stat.name] = base_stat
+        });
+        pokemonData.isGmax = pokemon.name.endsWith('gmax');
+        if (pokemon.name.includes('-') && !hyphenatedPokemonNames.some(name => pokemon.name.includes(name))) {
+          pokemonData.label = pokemon.name.split('-')[1]; // TODO: is there always just one hyphen on can there be more?
+        }
+        return pokemonData;
+      })
+    );
+    rng.reset();
+    const criterion = rng.nextArrayItem(criteriaList);
+    setPokemonList(shuffleArray(list));
+    setSortingCriteria(criterion);
+    setCorrectOrder([...list].sort((a, b) => a[criterion] - b[criterion]).map((pokemon) => pokemon[criterion]));
+    setLoading(false);
+  };
 
   useEffect(() => {
-    const fetchPokemon = async () => {
-      rng.reset();
-      const list = await Promise.all(
-        Array.from({ length: OPTION_COUNT }, async () => {
-          const pokemonId = rng.next(0, TOTAL_POKEMON_COUNT - 1);
-          const result = await P.getPokemonsList({ offset: pokemonId, limit: 1 });
-          const pokemon = result.results[0];
-          const pokemonData = await P.getPokemonByName(pokemon.name);
-          pokemonData.stats.forEach(({ base_stat, stat }) => {
-            pokemonData[stat.name] = base_stat
-          });
-          pokemonData.isGmax = pokemon.name.endsWith('gmax');
-          if (pokemon.name.includes('-') && !hyphenatedPokemonNames.some(name => pokemon.name.includes(name))) {
-            pokemonData.label = pokemon.name.split('-')[1]; // TODO: is there always just one hyphen on can there be more?
-          }
-          return pokemonData;
-        })
-      );
-      rng.reset();
-      const criterion = rng.nextArrayItem(criteriaList);
-      setPokemonList(shuffleArray(list));
-      setSortingCriteria(criterion);
-      setCorrectOrder([...list].sort((a, b) => a[criterion] - b[criterion]).map((pokemon) => pokemon[criterion]));
-      setLoading(false);
-    };
-  
     setLoading(true);
-    fetchPokemon();
+    const seed = new Date().toISOString().split('T')[0];
+    const rng = new Prando(`game_date_${seed}`);
+    fetchPokemon(rng);
   }, []);
 
   return (
-    <ApiDataContext.Provider value={{ pokemonList, sortingCriteria, correctOrder, loading }}>
+    <ApiDataContext.Provider value={{ pokemonList, sortingCriteria, correctOrder, gameNumber, loading }}>
       {children}
     </ApiDataContext.Provider>
   );
