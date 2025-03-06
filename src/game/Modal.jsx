@@ -15,15 +15,16 @@ const Modal = ({ scores, gameNumber, onClose }) => {
 
   const share = () => {
     const shareText = [
-      `Sort-Them-All #${gameNumber}`,
+      `🌱💦🔥 Sort-Them-All #${gameNumber}`,
       window.location.hostname,
-      `🌱💦🔥 | Guesses: ${scores.length}`,
+      `Guesses: ${scores.length}`,
       ...Array.from({ length: OPTION_COUNT }).map((_, colIndex) => (
-        scores.map((scoreRow, rowIndex) => (
-          <span key={rowIndex}>{scoreRow[colIndex] ? '🔴' : '⚫️'}</span>
-        ))
+        scores.map((scoreRow) => (scoreRow[colIndex] ? '🔴' : '⚫️')).join(' ')
       ))
     ]
+
+    console.log('shared text', shareText.join('\n'));
+    
 
     if (navigator.share) {
       navigator.share({
