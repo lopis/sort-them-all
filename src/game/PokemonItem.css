@@ -48,6 +48,7 @@
 	display: block;
   filter: drop-shadow(3px 3px 1px #9b6d186b);
   z-index: 1;
+  image-rendering: crisp-edges;
 }
 
 .label {
