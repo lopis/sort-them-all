@@ -31,7 +31,7 @@ function PokemonItem ({ item, dragHandleProps }) {
       className={[correctClass, 'item'].join(' ')}
     >
       <div className='sprite'>
-        <img src={pokemon?.sprites?.front_default}
+        <img src={pokemon?.sprites?.front_default || pokemon?.sprites?.front_shiny}
         />
       </div>
       <div style={{ flexBasis: 'calc(100% - 68px)' }}>
