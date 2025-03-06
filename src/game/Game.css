@@ -4,6 +4,10 @@
 	font-weight: bold;
 }
 
+.message + button {
+	margin-left: 20px;
+}
+
 .pokeball {
 	height: 20px;
 	width: 20px;
@@ -36,4 +40,10 @@
   100% {
     transform: translateX(0%);
   }
+}
+
+
+.scoreTable {
+  font-size: 0.5em;
+  letter-spacing: 1ch;
 }

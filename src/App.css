@@ -61,6 +61,13 @@ button:active {
 	transform: translate(3px, 3px);
 }
 
+.buttonGroup {
+	margin: 50px 0 10px;
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+}
+
 h1, h1 a {
 	margin: 0;
 	font-family: "Joti One";
@@ -73,6 +80,10 @@ h1, h1 a {
 h2 {
 	font-size: 1.2em;
 	font-weight: normal;
+}
+
+h3 {
+	margin-top: 0;
 }
 
 @font-face {

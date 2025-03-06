@@ -12,6 +12,8 @@
   cursor: grab;
   text-align: left;
   gap: 50px;
+  transition: color 100ms ease-in-out, background-color 100ms ease-in-out;
+  font-size: 85%;
 }
 
 .correct {
@@ -44,7 +46,7 @@
 	height: 96px;
 	width: 96px;
 	display: block;
-  filter: drop-shadow(3px 3px 1px #ab7a1e4f);
+  filter: drop-shadow(3px 3px 1px #9b6d186b);
   z-index: 1;
 }
 

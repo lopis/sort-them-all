@@ -3,7 +3,7 @@ import ApiDataContext from '../api/ApiDataContext';
 import './PokemonItem.css'
 
 const valueFormatters = {
-  height: (value) => `${value * 10} cm`,
+  height: (value) => value >= 10 ? `${(Math.round(value)/10)} m` : `${value * 10} cm`,
   weight: (value) => `${value / 100} kg`,
 }
 
