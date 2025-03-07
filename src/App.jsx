@@ -76,7 +76,7 @@ function App() {
             }}>
               <h1><strong>Practice</strong></h1>
               <p>
-                Practice a random challenge.
+                Practice with a random challenge.
               </p>
               <div>
                 <div>
@@ -93,6 +93,9 @@ function App() {
                     <button onClick={startGen(8)}>VIII</button>
                     <button onClick={startGen(9)}>IX</button>
                   </div>
+                  <p>
+                    Note: the always uses the latest stats regardless of the generation you choose to practice.
+                  </p>
                 </div>
               </div>
             </div>

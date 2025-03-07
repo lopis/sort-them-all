@@ -8,7 +8,7 @@ import './Game.css';
 
 const MAX_TRIES = 4;
 
-function Game() {
+function Game({ practice }) {
   const { pokemonList, sortingCriteria, correctOrder, loading } = useContext(ApiDataContext);
   const [pokemons, setPokemonList] = useState([]);
   const [gameDone, setGameDone] = useState(false);
@@ -86,7 +86,7 @@ function Game() {
             <span className="message">
               {scores.length === 1 ? '🎆 Perfect!' : '🎉 Great!'}
             </span>
-            <button onClick={openModal}>Results</button>
+            {!practice && <button onClick={openModal}>Results</button>}
           </>
           : gameOver ?
             <span className="message">😵 Game Over</span>
@@ -96,7 +96,7 @@ function Game() {
     <p>
       {correctCount} out of {OPTION_COUNT} in the correct position
     </p>
-    {showModal && <Modal scores={scores} onClose={closeModal} />}
+    {!practice && showModal && <Modal scores={scores} onClose={closeModal} />}
   </>;
 }
 
