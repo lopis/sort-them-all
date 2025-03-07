@@ -39,6 +39,7 @@ button {
 	background: var(--blue);
 	font-weight: bold;
 	transition: all 50ms ease-in-out;
+	z-index: 0;
 }
 
 button.secondary {
