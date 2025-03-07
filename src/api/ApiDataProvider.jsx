@@ -76,8 +76,9 @@ const ApiDataProvider = ({ children }) => {
 
   useEffect(() => {
     setLoading(true);
-    const seed = new Date().toISOString().split('T')[0];
-    const rng = new Prando(`game_date_${seed}`);
+    const now = new Date();
+    now.setHours(0, 0, 0, 0);
+    const rng = new Prando(now.getTime());
     fetchPokemon(rng);
   }, []);
 
