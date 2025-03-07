@@ -96,7 +96,7 @@ function Game() {
     <p>
       {correctCount} out of {OPTION_COUNT} in the correct position
     </p>
-    {showModal && <Modal scores={scores} gameNumber={gameNumber} onClose={closeModal} />}
+    {showModal && <Modal scores={scores} onClose={closeModal} />}
   </>;
 }
 

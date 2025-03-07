@@ -36,7 +36,7 @@ const shuffleArray = (array) => {
   return array;
 };
 
-const ApiDataProvider = ({ children }) => {
+const ApiDataProvider = ({ practice, children }) => {
   const [pokemonList, setPokemonList] = useState([]);
   const [correctOrder, setCorrectOrder] = useState([]);
   const [sortingCriteria, setSortingCriteria] = useState('');
@@ -70,23 +70,28 @@ const ApiDataProvider = ({ children }) => {
 
   useEffect(() => {
     setLoading(true);
-    const now = new Date();
-    now.setHours(0, 0, 0, 0);
-    const hashCode = (str) => {
-      let hash = 0;
-      for (let i = 0; i < str.length; i++) {
-        const char = str.charCodeAt(i);
-        hash = (hash << 5) - hash + char;
-        hash |= 0; // Convert to 32bit integer
-      }
-      return hash;
-    };
-    console.log(hashCode(now.getTime().toString()));
-    
 
-    const rng = new Prando(hashCode(now.toString()));
+    let rng;
+    if (practice) {
+      rng = new Prando();
+    } else {
+      const now = new Date();
+      now.setHours(0, 0, 0, 0);
+      const hashCode = (str) => {
+        let hash = 0;
+        for (let i = 0; i < str.length; i++) {
+          const char = str.charCodeAt(i);
+          hash = (hash << 5) - hash + char;
+          hash |= 0; // Convert to 32bit integer
+        }
+        return hash;
+      };    
+      const seed = hashCode(now.toString());
+      rng = new Prando(seed);
+    }
+
     fetchPokemon(rng);
-  }, []);
+  }, [practice]);
 
   return (
     <ApiDataContext.Provider value={{ pokemonList, sortingCriteria, correctOrder, loading }}>

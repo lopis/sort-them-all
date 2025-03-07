@@ -17,12 +17,21 @@ const getTimeRemaining = () => {
 function App() {
   const [gameStarted, setGameStarted] = useState(false);
   const [timeRemaining, setTimeRemaning] = useState(getTimeRemaining());
+  const [practice, setPractice] = useState(false);
+  const [generation, setGeneration] = useState(0);
 
   const startGame = () => {  
     setGameStarted(true);
   };
 
   const startRandom = () => {
+    setPractice(true);
+    setGameStarted(true);
+  };
+
+  const startGen = (gen) => () => {
+    setPractice(true);
+    setGeneration(gen);
     setGameStarted(true);
   };
 
@@ -40,7 +49,7 @@ function App() {
     <>
       <h1><a href="">Sort Them All!</a></h1>
       <div style={{ flexGrow: 1 }}>
-        {gameStarted && <MainGame /> || (
+        {gameStarted && <MainGame practice={practice} generation={generation} /> || (
           <div>
             <p>
               Drag the items of the list to sort them in <strong>ascending</strong> order according to the given criteria.
@@ -74,15 +83,15 @@ function App() {
                   <div className="buttonGroup" style={{ display: 'flex', flexWrap: 'wrap', maxWidth: 400, margin: 'auto' }}>
                     <button onClick={startRandom}>All Gens</button>
                     <hr  style={{ flexBasis: '100%' }} />
-                    <button>I</button>
-                    <button>II</button>
-                    <button>III</button>
-                    <button>IV</button>
-                    <button>V</button>
-                    <button>VI</button>
-                    <button>VII</button>
-                    <button>VIII</button>
-                    <button>IX</button>
+                    <button onClick={startGen(1)}>I</button>
+                    <button onClick={startGen(2)}>II</button>
+                    <button onClick={startGen(3)}>III</button>
+                    <button onClick={startGen(4)}>IV</button>
+                    <button onClick={startGen(5)}>V</button>
+                    <button onClick={startGen(6)}>VI</button>
+                    <button onClick={startGen(7)}>VII</button>
+                    <button onClick={startGen(8)}>VIII</button>
+                    <button onClick={startGen(9)}>IX</button>
                   </div>
                 </div>
               </div>
