@@ -2,12 +2,9 @@ import { useState, useEffect } from 'react';
 import { Pokedex } from 'pokeapi-js-wrapper';
 import Prando from 'prando';
 import ApiDataContext from './ApiDataContext';
+import { OPTION_COUNT, TOTAL_POKEMON_COUNT } from './constants';
 
 const P = new Pokedex();
-const TOTAL_POKEMON_COUNT = 1304;
-export const OPTION_COUNT = 7;
-const startingDate = new Date('2025/03/01');
-
 const criteriaList = [
   'height',
   'weight',
@@ -17,7 +14,7 @@ const criteriaList = [
   'special-attack',
   'special-defense',
   'speed',
-]
+];
 
 const hyphenatedPokemonNames = [
   'Ho-oh',
@@ -29,7 +26,7 @@ const hyphenatedPokemonNames = [
   'Chien-Pao',
   'Ting-Lu',
   'Chi-Yu',
-]
+];
 
 const shuffleArray = (array) => {
   for (let i = array.length - 1; i > 0; i--) {
@@ -37,16 +34,13 @@ const shuffleArray = (array) => {
     [array[i], array[j]] = [array[j], array[i]];
   }
   return array;
-}
+};
 
 const ApiDataProvider = ({ children }) => {
   const [pokemonList, setPokemonList] = useState([]);
   const [correctOrder, setCorrectOrder] = useState([]);
   const [sortingCriteria, setSortingCriteria] = useState('');
   const [loading, setLoading] = useState(true);
-
-  const daysSinceStart = Math.floor((new Date() - startingDate) / (1000 * 60 * 60 * 24));
-  const [gameNumber] = useState(daysSinceStart);
 
   const fetchPokemon = async (rng) => {
     rng.reset();
@@ -57,7 +51,7 @@ const ApiDataProvider = ({ children }) => {
         const pokemon = result.results[0];
         const pokemonData = await P.getPokemonByName(pokemon.name);
         pokemonData.stats.forEach(({ base_stat, stat }) => {
-          pokemonData[stat.name] = base_stat
+          pokemonData[stat.name] = base_stat;
         });
         pokemonData.isGmax = pokemon.name.endsWith('gmax');
         if (pokemon.name.includes('-') && !hyphenatedPokemonNames.some(name => pokemon.name.includes(name))) {
@@ -78,12 +72,24 @@ const ApiDataProvider = ({ children }) => {
     setLoading(true);
     const now = new Date();
     now.setHours(0, 0, 0, 0);
-    const rng = new Prando(now.getTime());
+    const hashCode = (str) => {
+      let hash = 0;
+      for (let i = 0; i < str.length; i++) {
+        const char = str.charCodeAt(i);
+        hash = (hash << 5) - hash + char;
+        hash |= 0; // Convert to 32bit integer
+      }
+      return hash;
+    };
+    console.log(hashCode(now.getTime().toString()));
+    
+
+    const rng = new Prando(hashCode(now.toString()));
     fetchPokemon(rng);
   }, []);
 
   return (
-    <ApiDataContext.Provider value={{ pokemonList, sortingCriteria, correctOrder, gameNumber, loading }}>
+    <ApiDataContext.Provider value={{ pokemonList, sortingCriteria, correctOrder, loading }}>
       {children}
     </ApiDataContext.Provider>
   );

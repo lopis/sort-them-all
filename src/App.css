@@ -1,7 +1,8 @@
 :root {
+	--white: #fff5cd;
+	--black: #183641;
 	--red: #fc4740;
 	--green: #009139;
-	--black: #183641;
 	--blue: #39569E;
 }
 
@@ -40,6 +41,11 @@ button {
 	transition: all 50ms ease-in-out;
 }
 
+button.secondary {
+	background-color: var(--black);
+	color: var(--white);
+}
+
 button::before {
   content: '';
   position: absolute;
@@ -62,7 +68,7 @@ button:active {
 }
 
 .buttonGroup {
-	margin: 50px 0 10px;
+	margin: 10px 0 10px;
 	display: flex;
 	justify-content: center;
 	gap: 10px;

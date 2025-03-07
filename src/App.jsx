@@ -1,7 +1,7 @@
-import { useContext, useEffect, useState } from 'react';
-import Game from './game/Game';
+import { useEffect, useState } from 'react';
 import './App.css';
-import ApiDataContext from './api/ApiDataContext';
+import MainGame from './game/MainGame';
+import { daysSinceStart } from './api/constants';
 
 const getTimeRemaining = () => {
   const now = new Date();
@@ -12,14 +12,17 @@ const getTimeRemaining = () => {
   const minutes = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
   const seconds = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
   return `${hours}:${minutes}:${seconds}`;
-}
+};
 
 function App() {
   const [gameStarted, setGameStarted] = useState(false);
   const [timeRemaining, setTimeRemaning] = useState(getTimeRemaining());
-  const { gameNumber } = useContext(ApiDataContext);
 
-  const startGame = async () => {  
+  const startGame = () => {  
+    setGameStarted(true);
+  };
+
+  const startRandom = () => {
     setGameStarted(true);
   };
 
@@ -37,7 +40,7 @@ function App() {
     <>
       <h1><a href="">Sort Them All!</a></h1>
       <div style={{ flexGrow: 1 }}>
-        {gameStarted && <Game /> || (
+        {gameStarted && <MainGame /> || (
           <div>
             <p>
               Drag the items of the list to sort them in <strong>ascending</strong> order according to the given criteria.
@@ -48,13 +51,42 @@ function App() {
               Pay attention to their image when sorting them.
             </p>
             <p>
+              <button onClick={startGame}>Play Game #{daysSinceStart}</button>
+            </p>
+            <p>
               A new challenge is created each day at midnight UTC+0.
               <br />
               The next challenge begins in {timeRemaining}.
             </p>
-            <p>
-              <button onClick={startGame}>Play Game #{gameNumber}</button>
-            </p>
+            <div style={{
+              fontSize: '80%',
+              background: 'var(--white)',
+              borderRadius: 10,
+              padding: 10,
+              margin: '20px 0',
+            }}>
+              <h1><strong>Practice</strong></h1>
+              <p>
+                Practice a random challenge.
+              </p>
+              <div>
+                <div>
+                  <div className="buttonGroup" style={{ display: 'flex', flexWrap: 'wrap', maxWidth: 400, margin: 'auto' }}>
+                    <button onClick={startRandom}>All Gens</button>
+                    <hr  style={{ flexBasis: '100%' }} />
+                    <button>I</button>
+                    <button>II</button>
+                    <button>III</button>
+                    <button>IV</button>
+                    <button>V</button>
+                    <button>VI</button>
+                    <button>VII</button>
+                    <button>VIII</button>
+                    <button>IX</button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         )}
       </div>

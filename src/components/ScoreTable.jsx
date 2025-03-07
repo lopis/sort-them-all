@@ -1,8 +1,8 @@
-import { OPTION_COUNT } from '../api/ApiDataProvider'
+import { OPTION_COUNT } from '../api/constants';
 
 const ScoreTable = ({ scores }) => {
   return (
-    <div class="scoreTable">
+    <div className="scoreTable">
       {scores.length > 0 && (
         Array.from({ length: OPTION_COUNT }).map((_, colIndex) => (
           <div key={colIndex}>
@@ -13,7 +13,7 @@ const ScoreTable = ({ scores }) => {
         ))
       )}
     </div>
-  )
-}
+  );
+};
 
 export default ScoreTable;

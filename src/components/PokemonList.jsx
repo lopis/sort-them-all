@@ -1,6 +1,6 @@
 import DraggableList from 'react-draggable-list';
-import PokemonItem from './PokemonItem'
-import './PokemonList.css'
+import PokemonItem from '../components/PokemonItem';
+import './PokemonList.css';
 
 function PokemonList ({ pokemonList = [], onListChange }) {
   return (

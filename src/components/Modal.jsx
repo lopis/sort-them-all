@@ -1,7 +1,7 @@
 import ScoreTable from './ScoreTable';
 import './Modal.css';
 import { useState } from 'react';
-import { OPTION_COUNT } from '../api/ApiDataProvider';
+import { OPTION_COUNT } from '../api/constants';
 
 const Modal = ({ scores, gameNumber, onClose }) => {
   const [closing, setClosing] = useState(false);
@@ -10,9 +10,9 @@ const Modal = ({ scores, gameNumber, onClose }) => {
   const close = () => {
     setClosing(true);
     setTimeout(() => {
-      onClose()
+      onClose();
     }, 100);
-  }
+  };
 
   const share = () => {
     const shareText = [
@@ -21,7 +21,7 @@ const Modal = ({ scores, gameNumber, onClose }) => {
       ...Array.from({ length: OPTION_COUNT }).map((_, colIndex) => (
         scores.map((scoreRow) => (scoreRow[colIndex] ? '🔴' : '⚫️')).join(' ')
       ))
-    ]
+    ];
 
     if (navigator.share) {
       navigator.share({
@@ -37,9 +37,9 @@ const Modal = ({ scores, gameNumber, onClose }) => {
         }, 1000);
       }).catch((error) => console.error('Error copying to clipboard', error));
     }
-  }
+  };
 
-  return <div class={`modal ${closing ? 'closing' : ''}`}>
+  return <div className={`modal ${closing ? 'closing' : ''}`}>
     <div className="overlay"></div>
     <div className="body">
       <h3>
@@ -54,12 +54,12 @@ const Modal = ({ scores, gameNumber, onClose }) => {
         order in {scores.length == 1 ? 'a single guess' : `${scores.length} guesses`}!
       </p>
       <ScoreTable scores={scores} />
-      <div class="buttonGroup">
+      <div className="buttonGroup" style={{ marginTop: 50 }}>
         <button onClick={share}>{copied ? 'Copied' : 'Share'}</button>
         <button onClick={close}>Close</button>
       </div>
     </div>
-  </div>
-}
+  </div>;
+};
 
 export default Modal;

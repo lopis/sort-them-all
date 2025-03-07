@@ -1,15 +1,15 @@
 import { useContext } from 'react';
 import ApiDataContext from '../api/ApiDataContext';
-import './PokemonItem.css'
+import './PokemonItem.css';
 
 const valueFormatters = {
   height: (value) => value >= 10 ? `${(Math.round(value)/10)} m` : `${value * 10} cm`,
   weight: (value) => `${value / 100} kg`,
-}
+};
 
 const formatValue = (value, criterion) => {
-  return valueFormatters[criterion] ? valueFormatters[criterion](value) : value
-}
+  return valueFormatters[criterion] ? valueFormatters[criterion](value) : value;
+};
 
 /**
  * Component to display a single Pokemon item with controls to move it up or down.
@@ -24,7 +24,7 @@ function PokemonItem ({ item, dragHandleProps }) {
   const pokemon = item;
   const correctClass = pokemon.correct
     ? 'correct' : 
-    pokemon.incorrect ? 'incorrect' : ''
+    pokemon.incorrect ? 'incorrect' : '';
 
   return (
     <div {...dragHandleProps}
@@ -49,7 +49,7 @@ function PokemonItem ({ item, dragHandleProps }) {
         <span className="label">{pokemon.label}</span>
       )}
     </div>
-  )
+  );
 }
 
 export default PokemonItem;

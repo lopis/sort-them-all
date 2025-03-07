@@ -1,51 +1,54 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 
 import ApiDataContext from '../api/ApiDataContext';
-import PokemonList from './PokemonList.jsx'
-import { OPTION_COUNT } from '../api/ApiDataProvider.jsx';
+import { OPTION_COUNT } from '../api/constants.js';
+import Modal from '../components/Modal.jsx';
+import PokemonList from '../components/PokemonList.jsx';
 import './Game.css';
-import ScoreTable from './ScoreTable.jsx';
-import Modal from './Modal.jsx';
 
-const MAX_TRIES = 4
+const MAX_TRIES = 4;
 
 function Game() {
-  const { pokemonList, sortingCriteria, correctOrder, gameNumber } = useContext(ApiDataContext);
-  const [pokemons, setPokemonList] = useState(pokemonList);
+  const { pokemonList, sortingCriteria, correctOrder, loading } = useContext(ApiDataContext);
+  const [pokemons, setPokemonList] = useState([]);
   const [gameDone, setGameDone] = useState(false);
   const [gameOver, setGameOver] = useState(false);
   const [scores, setScores] = useState([]);
   const [tries, setTries] = useState(0);
   const [showModal, setShowModal] = useState(false);
 
+  useEffect(() => {
+    setPokemonList(pokemonList);
+  }, [pokemonList]);
+
   const onListChange = (newList) => {
     setPokemonList(newList);
-  }
+  };
 
   const submit = () => {
     setTries(tries+1);
     const newList = pokemons.map((pokemon, i) => ({
       ...pokemon,
       correct: correctOrder[i] === pokemon[sortingCriteria],
-    }))
+    }));
     setPokemonList(newList);
     setScores([
       ...scores,
       newList.map(p => p.correct)
-    ])
-  }
+    ]);
+  };
 
   const openModal = (time = 1000) => {
     setTimeout(() => setShowModal(true), time);
-  }
+  };
 
   const closeModal = () => {
     setShowModal(false);
-  }
+  };
 
   const correctCount = pokemons.reduce((previous, current) => {
     return previous + (current.correct ? 1 : 0);
-  }, 0)
+  }, 0);
 
   if (!gameDone && correctCount === OPTION_COUNT) {
     setGameDone(true);
@@ -58,6 +61,10 @@ function Game() {
       ...pokemon,
       incorrect: !pokemon.correct
     })));
+  }
+
+  if (loading) {
+    return;
   }
   
   return <>
@@ -90,7 +97,7 @@ function Game() {
       {correctCount} out of {OPTION_COUNT} in the correct position
     </p>
     {showModal && <Modal scores={scores} gameNumber={gameNumber} onClose={closeModal} />}
-  </>
+  </>;
 }
 
 export default Game;
