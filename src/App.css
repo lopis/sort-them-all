@@ -4,6 +4,7 @@
 	--red: #fc4740;
 	--green: #009139;
 	--blue: #39569E;
+	--yellow: #ffcb04;
 }
 
 html {
@@ -34,7 +35,7 @@ button {
 	font-size: 1em;
 	padding: 10px 20px;
 	border: none;
-	color: #ffcb04;
+	color: var(--yellow);
 	border-radius: 99px;
 	background: var(--blue);
 	font-weight: bold;
@@ -79,7 +80,7 @@ h1, h1 a {
 	margin: 0;
 	font-family: "Joti One";
 	position: relative;
-	color: #ffcb04;
+	color: var(--yellow);
 	text-shadow: 3px 3px 0 var(--blue), -1px -1px 0 var(--blue), 1px -1px 0 var(--blue), -1px 4px 0 var(--blue), 1px 1px 0 var(--blue);
 	text-decoration: none;
 }

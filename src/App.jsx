@@ -51,22 +51,29 @@ function App() {
       <div style={{ flexGrow: 1 }}>
         {gameStarted && <MainGame practice={practice} generation={generation} /> || (
           <div>
-            <p>
+            <div style={{
+              background: 'var(--white)',
+              borderRadius: 10,
+              padding: 10,
+              margin: '20px 0',
+            }}>
+              <p>
               Drag the items of the list to sort them in <strong>ascending</strong> order according to the given criteria.
               You have 4 chances to guess the correct order.
-            </p>
-            <p>
+              </p>
+              <p>
               Keep in mind that some Pokémon species occur in <strong>multiple forms</strong> with different stats.
               Pay attention to their image when sorting them.
-            </p>
-            <p>
-              <button onClick={startGame}>Play Game #{daysSinceStart}</button>
-            </p>
-            <p>
+              </p>
+              <p>
+                <button onClick={startGame}>Play Game #{daysSinceStart}</button>
+              </p>
+              <p>
               A new challenge is created each day at midnight UTC+0.
-              <br />
+                <br />
               The next challenge begins in {timeRemaining}.
-            </p>
+              </p>
+            </div>
             <div style={{
               fontSize: '80%',
               background: 'var(--white)',
