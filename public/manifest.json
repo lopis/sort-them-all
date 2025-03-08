@@ -4,7 +4,7 @@
   "description": "Gotta sort them all!",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#fff5cd",
+  "background_color": "#183641",
   "theme_color": "#ffcb04",
   "icons": [
     {
