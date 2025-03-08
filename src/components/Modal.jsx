@@ -1,7 +1,7 @@
 import ScoreTable from './ScoreTable';
 import './Modal.css';
 import { useState } from 'react';
-import { daysSinceStart, OPTION_COUNT } from '../api/constants';
+import { gameNumber, OPTION_COUNT } from '../api/constants';
 
 const Modal = ({ scores, onClose }) => {
   const [closing, setClosing] = useState(false);
@@ -16,7 +16,7 @@ const Modal = ({ scores, onClose }) => {
 
   const share = () => {
     const shareText = [
-      `🌱💦🔥 Sort-Them-All #${daysSinceStart}`,
+      `🌱💦🔥 Sort-Them-All #${gameNumber}`,
       `Guesses: ${scores.length}`,
       ...Array.from({ length: OPTION_COUNT }).map((_, colIndex) => (
         scores.map((scoreRow) => (scoreRow[colIndex] ? '🔴' : '⚫️')).join(' ')
@@ -25,7 +25,7 @@ const Modal = ({ scores, onClose }) => {
 
     if (navigator.share) {
       navigator.share({
-        title: `Sort-Them-All #${daysSinceStart}`,
+        title: `Sort-Them-All #${gameNumber}`,
         text: shareText.join('\n'),
         url: window.location.href,
       }).catch((error) => console.error('Error sharing', error));
@@ -43,7 +43,7 @@ const Modal = ({ scores, onClose }) => {
     <div className="overlay"></div>
     <div className="body">
       <h3>
-        Sort-Them-All #{daysSinceStart}
+        Sort-Them-All #{gameNumber}
       </h3>
       <p>
       🌱💦🔥

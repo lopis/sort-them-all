@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import MainGame from './game/MainGame';
-import { daysSinceStart } from './api/constants';
+import { gameNumber } from './api/constants';
 
 const getTimeRemaining = () => {
   const now = new Date();
@@ -66,7 +66,9 @@ function App() {
               Pay attention to their image when sorting them.
               </p>
               <p>
-                <button onClick={startGame}>Play Game #{daysSinceStart}</button>
+                <button onClick={startGame} className='plausible-event-name--play-game'>
+                  Play Game #{gameNumber}
+                </button>
               </p>
               <p>
               A new challenge is created each day at midnight UTC+0.
@@ -88,17 +90,17 @@ function App() {
               <div>
                 <div>
                   <div className="buttonGroup" style={{ display: 'flex', flexWrap: 'wrap', maxWidth: 400, margin: 'auto' }}>
-                    <button onClick={startRandom}>All Gens</button>
-                    <hr  style={{ flexBasis: '100%' }} />
-                    <button onClick={startGen(1)}>I</button>
-                    <button onClick={startGen(2)}>II</button>
-                    <button onClick={startGen(3)}>III</button>
-                    <button onClick={startGen(4)}>IV</button>
-                    <button onClick={startGen(5)}>V</button>
-                    <button onClick={startGen(6)}>VI</button>
-                    <button onClick={startGen(7)}>VII</button>
-                    <button onClick={startGen(8)}>VIII</button>
-                    <button onClick={startGen(9)}>IX</button>
+                    <button onClick={startRandom} className='plausible-event-name--practice plausible-event-gen=all'>All Gens</button>
+                    <hr style={{ flexBasis: '100%' }} />
+                    {['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'].map((numeral, i) => (
+                      <button
+                        key={i + 1}
+                        onClick={startGen(i + 1)}
+                        className={`plausible-event-name--practice plausible-event-gen=${i}`}
+                      >
+                        {numeral}
+                      </button>
+                    ))}
                   </div>
                   <p>
                     Note: the always uses the latest stats regardless of the generation you choose to practice.
