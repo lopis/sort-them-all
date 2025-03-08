@@ -114,7 +114,7 @@ function App() {
                     ))}
                   </div>
                   <p>
-                    Note: the always uses the latest stats regardless of the generation you choose to practice.
+                    Note: while some stats have changed over the generations, the game always uses the latest stats regardless of the generation you choose to practice.
                   </p>
                 </div>
               </div>
