@@ -1,0 +1,21 @@
+{
+  "name": "Sort-Them-All",
+  "short_name": "Sort-Them-All",
+  "description": "Gotta sort them all!",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fff5cd",
+  "theme_color": "#ffcb04",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "192x192",
+      "type": "image/svg"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "512x512",
+      "type": "image/svg"
+    }
+  ]
+}
