@@ -3,7 +3,7 @@ import Game from './Game.jsx';
 
 const MainGame = (props) => (
   <ApiDataProvider {...props}>
-    <Game practice={props.practice} />
+    <Game practice={props.practice} onNewGame={props.onNewGame} />
   </ApiDataProvider>
 );
 

@@ -19,6 +19,7 @@ function App() {
   const [timeRemaining, setTimeRemaning] = useState(getTimeRemaining());
   const [practice, setPractice] = useState(false);
   const [generation, setGeneration] = useState(0);
+  const [gameKey, setGameKey] = useState(0);
 
   const startGame = () => {  
     setGameStarted(true);
@@ -45,18 +46,27 @@ function App() {
     };
   });
 
+  const onNewGame = () => {
+    setGameKey(gameKey + 1);
+  };
+
   return (
     <>
       <h1><a href="">Sort Them All!</a></h1>
       <div style={{ flexGrow: 1 }}>
-        {gameStarted && <MainGame practice={practice} generation={generation} /> || (
+        {gameStarted && <MainGame
+          key={gameKey}
+          practice={practice}
+          generation={generation}
+          onNewGame={onNewGame} /> || (
           <div>
-            <div style={{
-              background: 'var(--white)',
-              borderRadius: 10,
-              padding: 10,
-              margin: '20px 0',
-            }}>
+            <div
+              style={{
+                background: 'var(--white)',
+                borderRadius: 10,
+                padding: 10,
+                margin: '20px 0',
+              }}>
               <p>
               Drag the items of the list to sort them in <strong>ascending</strong> order according to the given criteria.
               You have 4 chances to guess the correct order.
@@ -76,13 +86,14 @@ function App() {
               The next challenge begins in {timeRemaining}.
               </p>
             </div>
-            <div style={{
-              fontSize: '80%',
-              background: 'var(--white)',
-              borderRadius: 10,
-              padding: 10,
-              margin: '20px 0',
-            }}>
+            <div
+              style={{
+                fontSize: '80%',
+                background: 'var(--white)',
+                borderRadius: 10,
+                padding: 10,
+                margin: '20px 0',
+              }}>
               <h1><strong>Practice</strong></h1>
               <p>
                 Practice with a random challenge.

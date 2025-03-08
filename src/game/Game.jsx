@@ -10,7 +10,7 @@ import { shuffleArray } from './util.js';
 
 const MAX_TRIES = 4;
 
-function Game({ practice }) {
+function Game({ practice, onNewGame }) {
   const { pokemonList, sortingCriteria, correctOrder, loading } = useContext(ApiDataContext);
   const [pokemons, setPokemonList] = useState([]);
   const [gameDone, setGameDone] = useState(false);
@@ -99,10 +99,13 @@ function Game({ practice }) {
             <span className="message">
               {scores.length === 1 ? '🎆 Perfect!' : '🎉 Great!'}
             </span>
-            {!practice && <button onClick={openModal}>Results</button>}
+            {practice ? <button onClick={openModal}>Results</button> : <button onClick={onNewGame}>New game</button>}
           </>
           : gameOver ?
-            <span className="message">😵 Game Over</span>
+            <>
+              <span className="message">😵 Game Over</span>
+              {practice && <button onClick={onNewGame}>New game</button>}
+            </>
             : <button onClick={submit}>Submit</button>
       }
     </div>

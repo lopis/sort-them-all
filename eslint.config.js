@@ -57,6 +57,8 @@ export default [
       'react/jsx-uses-react': 'error',
       'react/jsx-uses-vars': 'error',
       'react/prop-types': 'off',
+      'react/jsx-first-prop-new-line': [2, 'multiline'],
+      'react/jsx-max-props-per-line': [2, { 'when': 'multiline' }],
     },
   },
 ];
