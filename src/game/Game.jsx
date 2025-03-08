@@ -5,6 +5,8 @@ import { OPTION_COUNT } from '../api/constants.js';
 import Modal from '../components/Modal.jsx';
 import PokemonList from '../components/PokemonList.jsx';
 import './Game.css';
+import { loadGame, saveGame } from './storage.js';
+import { shuffleArray } from './util.js';
 
 const MAX_TRIES = 4;
 
@@ -18,8 +20,17 @@ function Game({ practice }) {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    setPokemonList(pokemonList);
-  }, [pokemonList]);
+    let save;
+    if (!practice && (save = loadGame())) {
+      setPokemonList(save.pokemonList);
+      setScores(save.scores);
+      setTries(save.scores.length);
+      setGameDone(save.gameDone);
+      setGameOver(save.gameOver);
+    } else {
+      setPokemonList(shuffleArray(pokemonList));
+    }
+  }, [pokemonList, practice]);
 
   const onListChange = (newList) => {
     setPokemonList(newList);
@@ -32,10 +43,12 @@ function Game({ practice }) {
       correct: correctOrder[i] === pokemon[sortingCriteria],
     }));
     setPokemonList(newList);
-    setScores([
+    const newScores = [
       ...scores,
       newList.map(p => p.correct)
-    ]);
+    ];
+    setScores(newScores);
+    saveGame(newList, newScores, gameDone, gameOver);
   };
 
   const openModal = (time = 1000) => {
@@ -56,11 +69,11 @@ function Game({ practice }) {
     setTries(tries-1);
   } else if (!gameOver && tries === MAX_TRIES) {
     setGameOver(true);
-    openModal();
-    setPokemonList(pokemons.map((pokemon) => ({
+    const newList = pokemons.map((pokemon) => ({
       ...pokemon,
       incorrect: !pokemon.correct
-    })));
+    }));
+    setPokemonList(newList);
   }
 
   if (loading) {
