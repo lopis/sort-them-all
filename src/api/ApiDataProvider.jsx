@@ -28,6 +28,14 @@ const hyphenatedPokemonNames = [
   'Chi-Yu',
 ];
 
+const getMidnightUTC = () => {
+  const now = new Date();
+  const utcYear = now.getUTCFullYear();
+  const utcMonth = now.getUTCMonth();
+  const utcDate = now.getUTCDate();
+  return new Date(Date.UTC(utcYear, utcMonth, utcDate, 0, 0, 0));
+};
+
 const ApiDataProvider = ({ practice, generation, children }) => {
   const [pokemonList, setPokemonList] = useState([]);
   const [correctOrder, setCorrectOrder] = useState([]);
@@ -108,7 +116,7 @@ const ApiDataProvider = ({ practice, generation, children }) => {
     if (practice) {
       rng = new Prando();
     } else {
-      const now = new Date();
+      const now = getMidnightUTC();
       now.setHours(0, 0, 0, 0);
       const hashCode = (str) => {
         let hash = 0;
