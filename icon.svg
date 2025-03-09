@@ -7,9 +7,9 @@
    id="svg216"
    sodipodi:docname="icon.svg"
    inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
-   inkscape:export-filename="icon-1024.png"
-   inkscape:export-xdpi="192"
-   inkscape:export-ydpi="192"
+   inkscape:export-filename="icon-512.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -25,9 +25,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      showgrid="false"
-     inkscape:zoom="0.59800242"
-     inkscape:cx="-13.377872"
-     inkscape:cy="162.2067"
+     inkscape:zoom="1.1960048"
+     inkscape:cx="245.8184"
+     inkscape:cy="301.00213"
      inkscape:window-width="1912"
      inkscape:window-height="1117"
      inkscape:window-x="4"
@@ -143,6 +143,13 @@
        y2="82.952652"
        gradientUnits="userSpaceOnUse" />
   </defs>
+  <rect
+     style="fill:#ffffff;stroke-width:0.248136"
+     id="rect1686"
+     width="135.467"
+     height="135.467"
+     x="-2.220446e-16"
+     y="0" />
   <path
      fill="url(#prefix__e)"
      d="M 24.240123,56.078928 C 30.676698,32.056748 55.368465,17.801402 79.389783,24.239266 103.4106,30.675772 117.66562,55.366764 111.22927,79.388139 80.121802,77.649499 51.287804,69.415856 24.240123,56.078928 Z"
