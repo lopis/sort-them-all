@@ -8,9 +8,14 @@
   "theme_color": "#ffcb04",
   "icons": [
     {
-      "src": "/favicon.svg",
+      "src": "/icon-512.png",
       "sizes": "512x512",
-      "type": "image/svg"
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-1024.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
     }
   ]
 }
