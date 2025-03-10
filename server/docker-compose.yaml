@@ -1,7 +1,6 @@
 services:
   node:
     image: "node:alpine"
-    user: "node"
     working_dir: /home/node/app
     environment:
       - NODE_ENV=production
