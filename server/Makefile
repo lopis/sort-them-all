@@ -3,10 +3,10 @@
 .PHONY: docker-network docker-build docker-up
 
 docker-network:
-    ./docker-setup-network.sh
+	./docker-setup-network.sh
 
 docker-build:
-    docker compose build
+	docker compose build
 
 docker-up:
-    docker compose up --build -d
+	docker compose up --build -d

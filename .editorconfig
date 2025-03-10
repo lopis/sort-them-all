@@ -10,5 +10,4 @@ indent_style = space
 indent_size = 2
 
 [*.sh, Makefile]
-indent_style = tabs
-indent_size = 4
+indent_style = tab
