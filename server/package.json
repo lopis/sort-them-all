@@ -5,10 +5,7 @@
   "scripts": {
     "start": "node dist/index.js",
     "build": "tsc",
-    "dev": "tsx watch src/index.ts",
-    "docker-network": "./docker-setup-network.sh",
-    "docker-build": "docker compose build",
-    "docker-up": "docker compose up --build -d"
+    "dev": "tsx watch src/index.ts"
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",
