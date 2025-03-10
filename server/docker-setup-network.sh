@@ -15,6 +15,8 @@ if [ -z "$CONTAINER_ID" ]; then
   exit 1
 fi
 
+# Create the network if not yet existing
+docker network create $NETWORK_NAME
 # Connect the third-party container to the custom network
 docker network connect $NETWORK_NAME $CONTAINER_ID
 
