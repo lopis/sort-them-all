@@ -99,7 +99,7 @@ function Game({ practice, onNewGame }) {
             <span className="message">
               {scores.length === 1 ? '🎆 Perfect!' : '🎉 Great!'}
             </span>
-            {practice ? <button onClick={openModal}>Results</button> : <button onClick={onNewGame}>New game</button>}
+            {practice ? <button onClick={onNewGame}>New game</button> : <button onClick={openModal}>Results</button>}
           </>
           : gameOver ?
             <>
