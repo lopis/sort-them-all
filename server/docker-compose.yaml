@@ -4,6 +4,7 @@ services:
     working_dir: /home/node/app
     environment:
       - NODE_ENV=production
+      - POKE_API_HOST=pokeapi-web-1
     volumes:
       - ./:/home/node/app
     expose:

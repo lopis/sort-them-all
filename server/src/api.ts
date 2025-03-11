@@ -19,7 +19,7 @@ type Pokemon = {
 const P = new Pokedex({
   // can be http as the requests are internal
   protocol: 'http',
-  hostName: 'localhost:3080',
+  hostName: process.env.POKE_API_HOST || 'localhost:3080',
 });
 
 const cache = new NodeCache();
