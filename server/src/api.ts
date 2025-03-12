@@ -141,7 +141,7 @@ export const fetchFromAllPokemon = async (seed: number) => {
       }
 
       return {
-        name: pokemon.name,
+        name: pokemon.species.name,
         label: pokemon.label,
         height: pokemonData.height,
         weight: pokemonData.weight,
