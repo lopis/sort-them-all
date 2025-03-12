@@ -183,8 +183,10 @@ const fetchFromGeneration = async (seed: number, gen: number) => {
       } while (generatedIds.has(pokemonId));
       generatedIds.add(pokemonId);
       const pokemonSpecies = await P.getPokemonByName(genSpecies[pokemonId].name);
-      const variety: Pokemon = rng.nextArrayItem(pokemonSpecies.varieties);
-      const pokemonData = await P.getPokemonByName(variety.name);
+      const varietyName: string = pokemonSpecies?.varieties.length > 0 ?
+        (rng.nextArrayItem(pokemonSpecies.varieties) as Pokemon).name :
+        pokemonSpecies.name;
+      const pokemonData = await P.getPokemonByName(varietyName);
       pokemonData.stats.forEach(({ base_stat, stat }) => {
         pokemonData[stat.name] = base_stat;
       });
