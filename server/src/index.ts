@@ -8,7 +8,7 @@ const app = express();
 const port = 3001;
 
 const corsOptions = {
-  origin: ['https://sort-them-all.jlopes.dev/', 'http://localhost:3000'],
+  origin: 'https://sort-them-all.jlopes.dev',
   optionsSuccessStatus: 200,
 };
 
