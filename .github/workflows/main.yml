@@ -17,15 +17,12 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
 
-      - name: Enter client directory
-        run: cd client
-
-      - name: Install dependencies
-        run: yarn
-      
       - name: Build project
-        run: yarn build
-
+        run: |
+          cd client
+          yarn
+          yarn bulid
+      
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v4
         with:
