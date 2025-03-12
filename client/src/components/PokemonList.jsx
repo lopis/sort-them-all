@@ -3,6 +3,7 @@ import PokemonItem from '../components/PokemonItem';
 import './PokemonList.css';
 
 function PokemonList ({ pokemonList = [], onListChange }) {
+
   return (
     <DraggableList
       list={pokemonList}

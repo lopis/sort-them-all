@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import MainGame from './game/MainGame';
 import { gameNumber } from './api/constants';
+import Menu from './components/Menu';
 
 const getTimeRemaining = () => {
   const now = new Date();
@@ -52,9 +53,12 @@ function App() {
 
   return (
     <>
-      <h1>
-        <a href="">Sort Them All!</a>
-      </h1>
+      <div className="header">
+        <h1>
+          <a href="">Sort Them All!</a>
+        </h1>
+        <Menu />
+      </div>
       <div style={{ flexGrow: 1 }}>
         {gameStarted && <MainGame
           key={gameKey}

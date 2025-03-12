@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import ApiDataContext from '../api/ApiDataContext';
 import './PokemonItem.css';
+import PreferencesContext from '../preferences/PreferencesContext';
 
 const valueFormatters = {
   height: (value) => value >= 10 ? `${(Math.round(value)/10)} m` : `${value * 10} cm`,
@@ -19,21 +20,21 @@ const formatValue = (value, criterion) => {
  * @param {Function} props.onUp - Callback function to move the pokemon up.
  * @param {Function} props.onDown - Callback function to move the pokemon down.
  */
-function PokemonItem ({ item, dragHandleProps }) {
+function PokemonItem ({ item: pokemon, dragHandleProps }) {
   const { sortingCriteria } = useContext(ApiDataContext);
-  const pokemon = item;
+  const animated = useContext(PreferencesContext).animated && pokemon.sprites?.showdown.length > 0 ;
   const correctClass = pokemon.correct
     ? 'correct' : 
     pokemon.incorrect ? 'incorrect' : '';
 
-  const sprite = pokemon.sprites.showdown[0];
+  const sprite = animated ? pokemon.sprites.showdown[0] : pokemon.sprites.still[0];
 
   return (
     <div
       {...dragHandleProps}
       className={[correctClass, 'item'].join(' ')}
     >
-      <div className='sprite showdown'>
+      <div className={`sprite ${animated ? 'showdown' : 'still'}`}>
         <img
           src={sprite}
         />

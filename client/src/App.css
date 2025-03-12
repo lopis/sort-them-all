@@ -76,6 +76,12 @@ button:active {
 	gap: 10px;
 }
 
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 h1, h1 a {
 	margin: 0;
 	font-family: "Joti One";
