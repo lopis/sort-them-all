@@ -7,6 +7,7 @@ import PokemonList from '../components/PokemonList.jsx';
 import './Game.css';
 import { loadGame, saveGame } from './storage.js';
 import { shuffleArray } from './util.js';
+import Loading from '../components/Loading.jsx';
 
 const MAX_TRIES = 4;
 
@@ -77,7 +78,7 @@ function Game({ practice, onNewGame }) {
   }
 
   if (loading) {
-    return;
+    return <Loading />;
   }
   
   return <>
