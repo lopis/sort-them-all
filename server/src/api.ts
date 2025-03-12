@@ -4,6 +4,7 @@ import { OPTION_COUNT, TOTAL_POKEMON_COUNT } from './constants';
 import Prando from 'prando';
 
 type Pokemon = {
+  id: number;
   name: string;
   label: string;
   height: number;
@@ -14,7 +15,6 @@ type Pokemon = {
   'special-attack': number;
   'special-defense': number;
   speed: number;
-  sprites: any[];
 };
 
 const P = new Pokedex({
@@ -95,11 +95,11 @@ export const fetchFromAllPokemon = async (seed: number) => {
       do {
         pokemonId = rng.nextInt(0, TOTAL_POKEMON_COUNT - 1);
       } while (generatedIds.has(pokemonId));
-      console.log('pokemonId', pokemonId);
 
       const result = await P.getPokemonsList({ offset: pokemonId, limit: 1 });
       const pokemon = result.results[0];
       const pokemonData = await P.getPokemonByName(pokemon.name);
+      console.log(pokemonData);
       pokemonData.stats.forEach(({ base_stat, stat }) => {
         pokemonData[stat.name] = base_stat;
       });
@@ -108,6 +108,7 @@ export const fetchFromAllPokemon = async (seed: number) => {
       }
 
       return {
+        id: pokemon.id,
         name: pokemon.name,
         label: pokemon.label,
         height: pokemonData.height,
@@ -154,6 +155,7 @@ const fetchFromGeneration = async (seed: number, gen: number) => {
         pokemonData.label = pokemon.name.split('-')[1]; // TODO: is there always just one hyphen on can there be more?
       }
       return {
+        id: pokemon.id,
         name: pokemon.name,
         label: pokemon.label,
         height: pokemonData.height,
