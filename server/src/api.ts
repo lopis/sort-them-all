@@ -1,9 +1,9 @@
-import Pokedex, { PokemonSpecies } from 'pokedex-promise-v2';
+import Pokedex, { Pokemon, PokemonSpecies } from 'pokedex-promise-v2';
 import NodeCache from 'node-cache';
 import { OPTION_COUNT, TOTAL_POKEMON_COUNT } from './constants';
 import Prando from 'prando';
 
-type Pokemon = {
+type Result = {
   name: string;
   label: string;
   height: number;
@@ -115,7 +115,7 @@ const getCriterion = (rng: Prando) => {
 
 export const fetchFromAllPokemon = async (seed: number) => {
   if (cache.has(seed)) {
-    const cachedResponse = cache.get(seed) as Pokemon[];
+    const cachedResponse = cache.get(seed) as Result[];
     if (cachedResponse) {
       return {
         ...cachedResponse,
@@ -177,21 +177,30 @@ const fetchFromGeneration = async (seed: number, gen: number) => {
   const generatedIds = new Set();
   const list = await Promise.all(
     Array.from({ length: OPTION_COUNT }, async () => {
-      let pokemonId;
+      let pokemonId;let pokemonSpecies:PokemonSpecies;
+      let pokemonData: Pokemon;
+      let sprites: Sprites;
+      let tries = 0;
+
       do {
-        pokemonId = rng.nextInt(0, pokemonCount - 1);
-      } while (generatedIds.has(pokemonId));
-      generatedIds.add(pokemonId);
-      const pokemonSpecies: PokemonSpecies = await P.getPokemonSpeciesByName(genSpecies[pokemonId].name);
-      const varietyName: string = pokemonSpecies?.varieties.length > 0 ?
-        rng.nextArrayItem(pokemonSpecies.varieties).pokemon.name :
-        pokemonSpecies.name;
-      const pokemonData = await P.getPokemonByName(varietyName);
-      pokemonData.stats.forEach(({ base_stat, stat }) => {
-        pokemonData[stat.name] = base_stat;
-      });
-      pokemonData.isGmax = pokemonData.name.endsWith('gmax');
-      pokemonData.label = pokemonData.name.replace(pokemonSpecies.name, '').replace(/-/g, ' ').trim();
+        do {
+          pokemonId = rng.nextInt(0, pokemonCount - 1);
+        } while (generatedIds.has(pokemonId));
+        generatedIds.add(pokemonId);
+      
+        pokemonSpecies = await P.getPokemonSpeciesByName(genSpecies[pokemonId].name);
+        const varietyName: string = pokemonSpecies?.varieties.length > 0 ?
+          rng.nextArrayItem(pokemonSpecies.varieties).pokemon.name :
+          pokemonSpecies.name;
+        pokemonData = await P.getPokemonByName(varietyName);
+        pokemonData.stats.forEach(({ base_stat, stat }) => {
+          pokemonData[stat.name] = base_stat;
+        });
+        pokemonData.isGmax = pokemonData.name.endsWith('gmax');
+        pokemonData.label = pokemonData.name.replace(pokemonSpecies.name, '').replace(/-/g, ' ').trim();
+        sprites = filterSprites(pokemonData.sprites);
+        console.log('sprites', pokemonData.name, sprites.still.length);
+      } while (tries++ < 10 && sprites.still.length < 1);
 
       return {
         name: pokemonSpecies.name,
@@ -204,7 +213,7 @@ const fetchFromGeneration = async (seed: number, gen: number) => {
         'special-attack': pokemonData['special-attack'],
         'special-defense': pokemonData['special-defense'],
         speed: pokemonData.speed,
-        sprites: filterSprites(pokemonData.sprites),
+        sprites,
       };
     })
   );
