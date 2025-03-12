@@ -11,7 +11,7 @@
 }
 
 .ball {
-  font-size: 200%;
+  font-size: 150%;
 	height: 2em;
 	width: 2em;
   border: 3px solid var(--black);
