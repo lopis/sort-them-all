@@ -1,4 +1,4 @@
-import Pokedex from 'pokedex-promise-v2';
+import Pokedex, { PokemonSpecies } from 'pokedex-promise-v2';
 import NodeCache from 'node-cache';
 import { OPTION_COUNT, TOTAL_POKEMON_COUNT } from './constants';
 import Prando from 'prando';
@@ -182,9 +182,9 @@ const fetchFromGeneration = async (seed: number, gen: number) => {
         pokemonId = rng.nextInt(0, pokemonCount - 1);
       } while (generatedIds.has(pokemonId));
       generatedIds.add(pokemonId);
-      const pokemonSpecies = await P.getPokemonByName(genSpecies[pokemonId].name);
+      const pokemonSpecies: PokemonSpecies = await P.getPokemonSpeciesByName(genSpecies[pokemonId].name);
       const varietyName: string = pokemonSpecies?.varieties.length > 0 ?
-        (rng.nextArrayItem(pokemonSpecies.varieties) as Pokemon).name :
+        rng.nextArrayItem(pokemonSpecies.varieties).name :
         pokemonSpecies.name;
       const pokemonData = await P.getPokemonByName(varietyName);
       pokemonData.stats.forEach(({ base_stat, stat }) => {
