@@ -132,7 +132,6 @@ export const fetchFromAllPokemon = async (seed: number) => {
       const result = await P.getPokemonsList({ offset: pokemonId, limit: 1 });
       const pokemon = result.results[0];
       const pokemonData = await P.getPokemonByName(pokemon.name);
-      console.log(pokemonData);
       pokemonData.stats.forEach(({ base_stat, stat }) => {
         pokemonData[stat.name] = base_stat;
       });
@@ -141,7 +140,7 @@ export const fetchFromAllPokemon = async (seed: number) => {
       }
 
       return {
-        name: pokemon.species.name,
+        name: pokemonData.species.name,
         label: pokemon.label,
         height: pokemonData.height,
         weight: pokemonData.weight,
