@@ -40,6 +40,7 @@ const hyphenatedPokemonNames = [
   'Chien-Pao',
   'Ting-Lu',
   'Chi-Yu',
+  'Walking-Wake',
 ];
 
 const criteriaList = [
@@ -140,7 +141,7 @@ export const fetchFromAllPokemon = async (seed: number) => {
 
       return {
         name: pokemonData.species.name,
-        label: pokemon.label,
+        label: pokemonData.label,
         height: pokemonData.height,
         weight: pokemonData.weight,
         attack: pokemonData.attack,
@@ -188,7 +189,7 @@ const fetchFromGeneration = async (seed: number, gen: number) => {
       }
       return {
         name: pokemon.name,
-        label: pokemon.label,
+        label: pokemonData.label,
         height: pokemonData.height,
         weight: pokemonData.weight,
         attack: pokemonData.attack,

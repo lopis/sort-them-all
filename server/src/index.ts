@@ -16,20 +16,20 @@ app.use(cors(corsOptions));
 
 app.get('/daily', async (req: Request, res: Response) => {
   const list = await getDailyList();
-  console.log(JSON.stringify(list));
+  // console.log(JSON.stringify(list));
   res.send(list);
 });
 
 app.get('/practice', async (req: Request, res: Response) => {
   const list = await getPracticeList();
-  console.log(JSON.stringify(list));
+  // console.log(JSON.stringify(list));
   res.send(list);
 });
 
 app.get('/practice/gen/:gen', async (req: Request, res: Response) => {
   const gen = parseInt(req.params.gen);
   const list = await getPracticeList(gen);
-  console.log(JSON.stringify(list));
+  // console.log(JSON.stringify(list));
   res.send(list);
 });
 
