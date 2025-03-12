@@ -41,6 +41,10 @@ const hyphenatedPokemonNames = [
   'Ting-Lu',
   'Chi-Yu',
   'Walking-Wake',
+  'Iron-Boulder',
+  'Slither-Wing',
+  'Iron-Crown',
+  'Sandy-Shocks',
 ];
 
 const criteriaList = [
@@ -168,8 +172,8 @@ const fetchFromGeneration = async (seed: number, gen: number) => {
   const rng = new Prando(seed);
   const generation = await P.getGenerationByName(gen);
 
-  const species = generation.pokemon_species;
-  const pokemonCount = species.length;
+  const genSpecies = generation.pokemon_species;
+  const pokemonCount = genSpecies.length;
   const generatedIds = new Set();
   const list = await Promise.all(
     Array.from({ length: OPTION_COUNT }, async () => {
@@ -178,17 +182,18 @@ const fetchFromGeneration = async (seed: number, gen: number) => {
         pokemonId = rng.nextInt(0, pokemonCount - 1);
       } while (generatedIds.has(pokemonId));
       generatedIds.add(pokemonId);
-      const pokemon = await P.getPokemonByName(species[pokemonId].name);
-      const pokemonData = await P.getPokemonByName(pokemon.name);
+      const pokemonSpecies = await P.getPokemonByName(genSpecies[pokemonId].name);
+      const variety: Pokemon = rng.nextArrayItem(pokemonSpecies.varieties);
+      const pokemonData = await P.getPokemonByName(variety.name);
       pokemonData.stats.forEach(({ base_stat, stat }) => {
         pokemonData[stat.name] = base_stat;
       });
-      pokemonData.isGmax = pokemon.name.endsWith('gmax');
-      if (pokemon.name.includes('-') && !hyphenatedPokemonNames.some(name => pokemon.name.includes(name))) {
-        pokemonData.label = pokemon.name.split('-')[1]; // TODO: is there always just one hyphen on can there be more?
+      pokemonData.isGmax = pokemonData.name.endsWith('gmax');
+      if (pokemonData.name.includes('-') && !hyphenatedPokemonNames.some(name => pokemonData.name.includes(name))) {
+        pokemonData.label = pokemonData.name.split('-')[1]; // TODO: is there always just one hyphen on can there be more?
       }
       return {
-        name: pokemon.name,
+        name: pokemonSpecies.name,
         label: pokemonData.label,
         height: pokemonData.height,
         weight: pokemonData.weight,
