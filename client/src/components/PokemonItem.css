@@ -52,6 +52,13 @@
   image-rendering: pixelated;
 }
 
+.sprite.showdown img {
+	height: unset;
+	width: unset;
+	transform: scale(0.7);
+	image-rendering: optimizequality;
+}
+
 .label {
   text-transform: capitalize;
   margin-right: 10px;

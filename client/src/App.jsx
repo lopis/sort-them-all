@@ -53,7 +53,6 @@ function App() {
   return (
     <>
       <h1>
-        <img src="favicon.svg" alt="" />
         <a href="">Sort Them All!</a>
       </h1>
       <div style={{ flexGrow: 1 }}>

@@ -26,12 +26,16 @@ function PokemonItem ({ item, dragHandleProps }) {
     ? 'correct' : 
     pokemon.incorrect ? 'incorrect' : '';
 
+  const sprite = pokemon.sprites.showdown[0];
+
   return (
-    <div {...dragHandleProps}
+    <div
+      {...dragHandleProps}
       className={[correctClass, 'item'].join(' ')}
     >
-      <div className='sprite'>
-        <img src={pokemon?.sprites?.front_default || pokemon?.sprites?.front_shiny}
+      <div className='sprite showdown'>
+        <img
+          src={sprite}
         />
       </div>
       <div style={{ flexBasis: 'calc(100% - 68px)' }}>
