@@ -2,17 +2,17 @@
 
 import express, { Request, Response } from 'express';
 import { getDailyList, getPracticeList } from './api';
-// import cors from 'cors';
+import cors from 'cors';
 
 const app = express();
 const port = 3001;
 
-// const corsOptions = {
-//   origin: ['http://jlopes.dev', 'http://localhost:3000', 'http://localhost:3001'],
-//   optionsSuccessStatus: 200,
-// };
+const corsOptions = {
+  origin: ['http://jlopes.dev', 'http://localhost:3000'],
+  optionsSuccessStatus: 200,
+};
 
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 
 app.get('/daily', async (req: Request, res: Response) => {
   res.send(await getDailyList());
