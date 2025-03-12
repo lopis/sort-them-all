@@ -128,20 +128,26 @@ export const fetchFromAllPokemon = async (seed: number) => {
   const generatedIds = new Set();
   const list = await Promise.all(
     Array.from({ length: OPTION_COUNT }, async () => {
-      let pokemonId;
+      let pokemonId: number;
+      let pokemonData: Pokemon;
+      let sprites: Sprites;
+      let tries = 0;
       do {
-        pokemonId = rng.nextInt(0, TOTAL_POKEMON_COUNT - 1);
-      } while (generatedIds.has(pokemonId));
-
-      const result = await P.getPokemonsList({ offset: pokemonId, limit: 1 });
-      const pokemon = result.results[0];
-      const pokemonData = await P.getPokemonByName(pokemon.name);
-      pokemonData.stats.forEach(({ base_stat, stat }) => {
-        pokemonData[stat.name] = base_stat;
-      });
-      if (pokemon.name.includes('-') && !hyphenatedPokemonNames.some(name => pokemon.name.includes(name))) {
-        pokemonData.label = pokemon.name.split('-').slice(1).join(' ');
-      }
+        do {
+          pokemonId = rng.nextInt(0, TOTAL_POKEMON_COUNT - 1);
+        } while (generatedIds.has(pokemonId));
+  
+        const result = await P.getPokemonsList({ offset: pokemonId, limit: 1 });
+        const pokemon = result.results[0];
+        pokemonData = await P.getPokemonByName(pokemon.name);
+        pokemonData.stats.forEach(({ base_stat, stat }) => {
+          pokemonData[stat.name] = base_stat;
+        });
+        if (pokemon.name.includes('-') && !hyphenatedPokemonNames.some(name => pokemon.name.includes(name))) {
+          pokemonData.label = pokemon.name.split('-').slice(1).join(' ');
+        }
+        sprites = filterSprites(pokemonData.sprites);
+      } while (tries++ < 10 && sprites.still.length < 1);
 
       return {
         name: pokemonData.species.name,
@@ -154,7 +160,7 @@ export const fetchFromAllPokemon = async (seed: number) => {
         'special-attack': pokemonData['special-attack'],
         'special-defense': pokemonData['special-defense'],
         speed: pokemonData.speed,
-        sprites: filterSprites(pokemonData.sprites),
+        sprites,
       };
     })
   );
