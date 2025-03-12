@@ -14,6 +14,7 @@ type Pokemon = {
   'special-attack': number;
   'special-defense': number;
   speed: number;
+  sprites: any[];
 };
 
 const P = new Pokedex({
@@ -163,6 +164,7 @@ const fetchFromGeneration = async (seed: number, gen: number) => {
         'special-attack': pokemonData['special-attack'],
         'special-defense': pokemonData['special-defense'],
         speed: pokemonData.speed,
+        sprites: pokemonData.sprites,
       };
     })
   );
