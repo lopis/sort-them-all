@@ -14,8 +14,13 @@ type Pokemon = {
   'special-attack': number;
   'special-defense': number;
   speed: number;
-  sprites: unknown[];
+  sprites: Sprites;
 };
+
+type Sprites = {
+  still: string[],
+  showdown: string[],
+}
 
 const P = new Pokedex({
   // can be http as the requests are internal
@@ -47,6 +52,34 @@ const criteriaList = [
   'special-defense',
   'speed',
 ];
+
+
+const filterSprites = (sprites: Pokedex.PokemonSprites): Sprites => {
+  const still = [];
+  const showdown = [];
+  
+  if (sprites.front_default) {
+    still.push(sprites.front_default);
+  }
+  if (sprites.front_shiny	) {
+    still.push(sprites.front_shiny);
+  }
+  if (sprites.front_female	) {
+    still.push(sprites.front_female);
+  }
+
+  if (sprites.other.showdown.front_default) {
+    showdown.push(sprites.other.showdown.front_default);
+  }
+  if (sprites.other.showdown.front_shiny	) {
+    showdown.push(sprites.other.showdown.front_shiny);
+  }
+  if (sprites.other.showdown.front_female	) {
+    showdown.push(sprites.other.showdown.front_female);
+  }
+
+  return { still, showdown };
+};
 
 const getMidnightUTC = (): Date => {
   const now = new Date();
@@ -118,7 +151,7 @@ export const fetchFromAllPokemon = async (seed: number) => {
         'special-attack': pokemonData['special-attack'],
         'special-defense': pokemonData['special-defense'],
         speed: pokemonData.speed,
-        sprites: pokemonData.sprites,
+        sprites: filterSprites(pokemonData.sprites),
       };
     })
   );
@@ -165,7 +198,7 @@ const fetchFromGeneration = async (seed: number, gen: number) => {
         'special-attack': pokemonData['special-attack'],
         'special-defense': pokemonData['special-defense'],
         speed: pokemonData.speed,
-        sprites: pokemonData.sprites,
+        sprites: filterSprites(pokemonData.sprites),
       };
     })
   );
@@ -200,3 +233,4 @@ export const getPracticeList = async (gen?: number) => {
     return error as Error;
   }
 };
+
