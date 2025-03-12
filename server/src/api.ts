@@ -110,11 +110,10 @@ const getCriterion = (rng: Prando) => {
 
 export const fetchFromAllPokemon = async (seed: number) => {
   if (cache.has(seed)) {
-    const cachedList = cache.get(seed) as Pokemon[];
-    if (cachedList) {
+    const cachedResponse = cache.get(seed) as Pokemon[];
+    if (cachedResponse) {
       return {
-        pokemonList: cachedList,
-        seed,
+        ...cachedResponse,
         cached: true,
       };
     }
@@ -154,13 +153,14 @@ export const fetchFromAllPokemon = async (seed: number) => {
       };
     })
   );
-  cache.set(seed, list);
-  return {
+
+  const result = {
     pokemonList: list,
     criterion: getCriterion(rng),
     seed,
-    cached: false,
   };
+  cache.set(seed, result);
+  return result;
 };
 
 const fetchFromGeneration = async (seed: number, gen: number) => {
