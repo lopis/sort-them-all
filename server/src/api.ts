@@ -129,6 +129,7 @@ export const fetchFromAllPokemon = async (seed: number) => {
   const list = await Promise.all(
     Array.from({ length: OPTION_COUNT }, async () => {
       let pokemonId: number;
+      let label: string | null = null;
       let pokemonData: Pokemon;
       let sprites: Sprites;
       let tries = 0;
@@ -144,14 +145,14 @@ export const fetchFromAllPokemon = async (seed: number) => {
           pokemonData[stat.name] = base_stat;
         });
         if (pokemon.name.includes('-') && !hyphenatedPokemonNames.some(name => pokemon.name.includes(name))) {
-          pokemonData.label = pokemon.name.split('-').slice(1).join(' ');
+          label = pokemon.name.split('-').slice(1).join(' ');
         }
         sprites = filterSprites(pokemonData.sprites);
       } while (tries++ < 10 && sprites.still.length < 1);
 
       return {
         name: pokemonData.species.name,
-        label: pokemonData.label,
+        label: label || null,
         height: pokemonData.height,
         weight: pokemonData.weight,
         attack: pokemonData.attack,
@@ -187,6 +188,7 @@ const fetchFromGeneration = async (seed: number, gen: number) => {
       let pokemonData: Pokemon;
       let sprites: Sprites;
       let tries = 0;
+      let label: string | null = null;
 
       do {
         do {
@@ -203,14 +205,14 @@ const fetchFromGeneration = async (seed: number, gen: number) => {
           pokemonData[stat.name] = base_stat;
         });
         pokemonData.isGmax = pokemonData.name.endsWith('gmax');
-        pokemonData.label = pokemonData.name.replace(pokemonSpecies.name, '').replace(/-/g, ' ').trim();
+        label = pokemonData.name.replace(pokemonSpecies.name, '').replace(/-/g, ' ').trim();
         sprites = filterSprites(pokemonData.sprites);
         console.log('sprites', pokemonData.name, sprites.still.length);
       } while (tries++ < 10 && sprites.still.length < 1);
 
       return {
         name: pokemonSpecies.name,
-        label: pokemonData.label || null,
+        label: label || null,
         height: pokemonData.height,
         weight: pokemonData.weight,
         attack: pokemonData.attack,
