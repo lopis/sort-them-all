@@ -1,0 +1,20 @@
+services:
+  node:
+    image: "node:alpine"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=production
+      - POKE_API_HOST=pokeapi-web-1
+    volumes:
+      - ./:/home/node/app
+    expose:
+      - "3001"
+    ports:
+      - "3001:3001"
+    command: >
+      sh -c "yarn &&
+             yarn build &&
+             yarn start"
+networks:
+  pokeapi_network:
+    external: true

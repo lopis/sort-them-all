@@ -1,0 +1,80 @@
+.settings {
+	text-shadow: none;
+	color: var(--black);
+	font-size: 1.8em;
+  user-select: none;
+}
+
+.closed .dropdown {
+  top: -100px;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: transform 150ms ease-out, opacity 150ms ease-out, top 0ms 150ms;
+}
+
+.dropdown {
+	position: absolute;
+	top: 100%;
+	right: -10px;
+	background: var(--yellow);
+	margin: 5px;
+	padding: 20px;
+	box-shadow: 0 3px 5px -3px var(--black);
+	border-radius: 5px;
+  transition: transform 150ms ease-out, opacity 150ms ease-out, top 0ms;
+}
+
+.dropdown::before {
+	content: '';
+	display: block;
+	position: absolute;
+	height: 20px;
+	width: 20px;
+	top: -20px;
+	right: 10px;
+	transform: translateY(10px) rotate(45deg);
+	box-sizing: border-box;
+	border: 10px solid;
+	border-color: var(--yellow) transparent transparent var(--yellow);
+  z-index: -1;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+}
+
+input[type=checkbox] {
+  display: none;
+}
+
+.switch {
+  position: relative;
+	height: 1em;
+	width: 2em;
+	border: 2px solid var(--black);
+	margin-left: 1em;
+	border-radius: 1em;
+  transition: all 150ms ease-out;
+}
+
+.switch::before {
+	content: '';
+	height: calc(1em - 2px);
+	width: calc(1em - 2px);
+	background-color: var(--black);
+	position: absolute;
+	left: 1px;
+	top: 1px;
+	border-radius: 1em;
+  transition: all 150ms ease-out;
+}
+
+input[type=checkbox]:checked + .switch {
+  background-color: var(--green);
+}
+
+input[type=checkbox]:checked + .switch::before {
+  background-color: var(--white);
+  left: 1em;
+}
