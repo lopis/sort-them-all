@@ -2,11 +2,16 @@
 
 .PHONY: docker-network docker-build docker-up
 
-docker-network:
+network:
 	./docker-setup-network.sh
 
-docker-build:
+build:
 	docker compose build
 
-docker-up:
+start:
 	docker compose up --build -d
+
+restart:
+  docker compose down
+  docker compose up --build -d
+  ./docker-setup-network.sh
