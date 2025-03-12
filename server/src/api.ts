@@ -184,19 +184,18 @@ const fetchFromGeneration = async (seed: number, gen: number) => {
       generatedIds.add(pokemonId);
       const pokemonSpecies: PokemonSpecies = await P.getPokemonSpeciesByName(genSpecies[pokemonId].name);
       const varietyName: string = pokemonSpecies?.varieties.length > 0 ?
-        rng.nextArrayItem(pokemonSpecies.varieties).name :
+        rng.nextArrayItem(pokemonSpecies.varieties).pokemon.name :
         pokemonSpecies.name;
       const pokemonData = await P.getPokemonByName(varietyName);
       pokemonData.stats.forEach(({ base_stat, stat }) => {
         pokemonData[stat.name] = base_stat;
       });
       pokemonData.isGmax = pokemonData.name.endsWith('gmax');
-      if (pokemonData.name.includes('-') && !hyphenatedPokemonNames.some(name => pokemonData.name.includes(name))) {
-        pokemonData.label = pokemonData.name.split('-')[1]; // TODO: is there always just one hyphen on can there be more?
-      }
+      pokemonData.label = pokemonData.name.replace(pokemonSpecies.name, '').replace(/-/g, ' ').trim();
+
       return {
         name: pokemonSpecies.name,
-        label: pokemonData.label,
+        label: pokemonData.label || null,
         height: pokemonData.height,
         weight: pokemonData.weight,
         attack: pokemonData.attack,
