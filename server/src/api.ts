@@ -36,6 +36,17 @@ const hyphenatedPokemonNames = [
   'Chi-Yu',
 ];
 
+const criteriaList = [
+  'height',
+  'weight',
+  'attack',
+  'hp',
+  'defense',
+  'special-attack',
+  'special-defense',
+  'speed',
+];
+
 const getMidnightUTC = (): Date => {
   const now = new Date();
   const utcYear = now.getUTCFullYear();
@@ -55,8 +66,12 @@ const getDailySeed = (): number => {
       hash |= 0; // Convert to 32bit integer
     }
     return hash;
-  };    
+  };
   return hashCode(now.toString());
+};
+
+const getCriterion = (rng: Prando) => {
+  return rng.nextArrayItem(criteriaList);
 };
 
 export const fetchFromAllPokemon = async (seed: number) => {
@@ -80,7 +95,7 @@ export const fetchFromAllPokemon = async (seed: number) => {
         pokemonId = rng.nextInt(0, TOTAL_POKEMON_COUNT - 1);
       } while (generatedIds.has(pokemonId));
       console.log('pokemonId', pokemonId);
-      
+
       const result = await P.getPokemonsList({ offset: pokemonId, limit: 1 });
       const pokemon = result.results[0];
       const pokemonData = await P.getPokemonByName(pokemon.name);
@@ -108,6 +123,7 @@ export const fetchFromAllPokemon = async (seed: number) => {
   cache.set(seed, list);
   return {
     pokemonList: list,
+    criterion: getCriterion(rng),
     seed,
     cached: false,
   };
@@ -116,7 +132,7 @@ export const fetchFromAllPokemon = async (seed: number) => {
 const fetchFromGeneration = async (seed: number, gen: number) => {
   const rng = new Prando(seed);
   const generation = await P.getGenerationByName(gen);
-  
+
   const species = generation.pokemon_species;
   const pokemonCount = species.length;
   const generatedIds = new Set();
@@ -153,6 +169,7 @@ const fetchFromGeneration = async (seed: number, gen: number) => {
 
   return {
     pokemonList: list,
+    criterion: getCriterion(rng),
     seed,
     cached: false,
   };
