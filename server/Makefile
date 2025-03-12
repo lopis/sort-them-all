@@ -12,6 +12,6 @@ start:
 	docker compose up --build -d
 
 restart:
-  docker compose down
-  docker compose up --build -d
-  ./docker-setup-network.sh
+	docker compose down
+	docker compose up --build -d
+	./docker-setup-network.sh
