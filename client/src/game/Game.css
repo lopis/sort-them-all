@@ -47,3 +47,24 @@
   font-size: 0.5em;
   letter-spacing: 1ch;
 }
+
+.orderIcon, .orderIcon::before, .orderIcon::after {
+  position: relative;
+  display: inline-flex;
+  content: '';
+  height: 4px;
+  width: 1.3ch;
+  background-color: currentColor;
+}
+
+.orderIcon::before {
+  position: absolute;
+  top: -6px;
+  width: 1.0ch;
+}
+
+.orderIcon::after {
+  position: absolute;
+  top: -12px;
+  width: 0.7ch;
+}

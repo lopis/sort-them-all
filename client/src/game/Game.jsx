@@ -81,9 +81,13 @@ function Game({ practice, onNewGame }) {
     return <Loading />;
   }
   
-  return <>
+  return <div style={{ textAlign: 'center' }}>
     <h2>
       Sort by: <strong>{sortingCriteria.replace(/_-/, ' ').replace('hp', 'HP')}</strong>
+      <br />
+      <div style={{ fontSize: '75%' }}>
+        <span style={{ marginRight: -4 }}>in ascending order ⇃</span><span className="orderIcon"></span>
+      </div>
     </h2>
     <div style={{ pointerEvents: gameDone || gameOver ? 'none' : 'initial' }}>
       <PokemonList pokemonList={pokemons} onListChange={onListChange} />
@@ -114,7 +118,7 @@ function Game({ practice, onNewGame }) {
       {correctCount} out of {OPTION_COUNT} in the correct position
     </p>
     {!practice && showModal && <Modal scores={scores} onClose={closeModal} />}
-  </>;
+  </div>;
 }
 
 export default Game;

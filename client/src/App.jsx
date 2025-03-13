@@ -82,7 +82,7 @@ function App() {
               Keep in mind that some Pokémon species occur in <strong>multiple forms</strong> with different stats.
               Pay attention to their image when sorting them.
               </p>
-              <p>
+              <p style={{ textAlign: 'center' }}>
                 <button onClick={startGame} className='plausible-event-name--play-game'>
                   Play Game #{gameNumber}
                 </button>
@@ -113,7 +113,7 @@ function App() {
                 </p>
                 <div>
                   <div>
-                    <div className="buttonGroup" style={{ display: 'flex', flexWrap: 'wrap', maxWidth: 400, margin: 'auto' }}>
+                    <div className="buttonGroup" style={{ display: 'flex', flexWrap: 'wrap', maxWidth: 370, margin: 'auto' }}>
                       <button onClick={startRandom} className='plausible-event-name--practice plausible-event-gen=all'>All Gens</button>
                       <hr style={{ flexBasis: '100%' }} />
                       {['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'].map((numeral, i) => (
@@ -136,7 +136,7 @@ function App() {
           </div>
         )}
       </div>
-      <footer>
+      <footer style={{ textAlign: 'center' }}>
         by <a href="https://github.com/lopis/sort-them-all">@lopis</a>
       </footer>
     </>
