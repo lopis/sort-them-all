@@ -21,6 +21,7 @@ function App() {
   const [practice, setPractice] = useState(false);
   const [generation, setGeneration] = useState(0);
   const [gameKey, setGameKey] = useState(0);
+  const [isPracticeOpen, setPracticeOpen] = useState(false);
 
   const startGame = () => {  
     setGameStarted(true);
@@ -100,28 +101,35 @@ function App() {
                 padding: 10,
                 margin: '20px 0',
               }}>
-              <h1><strong>Practice</strong></h1>
-              <p>
+              <div className="header" onClick={() => setPracticeOpen(!isPracticeOpen)}>
+                <h1><strong>Practice</strong></h1>
+                <div className="toggle">
+                  {isPracticeOpen ? '‒' : '+'}
+                </div>
+              </div>
+              <div className={`practicePanel ${isPracticeOpen ? 'open' : 'closed'}`}>
+                <p>
                 Practice with a random challenge.
-              </p>
-              <div>
+                </p>
                 <div>
-                  <div className="buttonGroup" style={{ display: 'flex', flexWrap: 'wrap', maxWidth: 400, margin: 'auto' }}>
-                    <button onClick={startRandom} className='plausible-event-name--practice plausible-event-gen=all'>All Gens</button>
-                    <hr style={{ flexBasis: '100%' }} />
-                    {['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'].map((numeral, i) => (
-                      <button
-                        key={i + 1}
-                        onClick={startGen(i + 1)}
-                        className={`plausible-event-name--practice plausible-event-gen=${i}`}
-                      >
-                        {numeral}
-                      </button>
-                    ))}
-                  </div>
-                  <p>
+                  <div>
+                    <div className="buttonGroup" style={{ display: 'flex', flexWrap: 'wrap', maxWidth: 400, margin: 'auto' }}>
+                      <button onClick={startRandom} className='plausible-event-name--practice plausible-event-gen=all'>All Gens</button>
+                      <hr style={{ flexBasis: '100%' }} />
+                      {['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'].map((numeral, i) => (
+                        <button
+                          key={i + 1}
+                          onClick={startGen(i + 1)}
+                          className={`plausible-event-name--practice plausible-event-gen=${i}`}
+                        >
+                          {numeral}
+                        </button>
+                      ))}
+                    </div>
+                    <p>
                     Note: while some stats have changed over the generations, the game always uses the latest stats regardless of the generation you choose to practice.
-                  </p>
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>

@@ -119,3 +119,20 @@ footer {
 footer a, footer a:visited {
 	color: var(--blue);
 }
+
+.practicePanel {
+  max-height: 500px;
+  transition: max-height 300ms ease-in-out;
+  overflow: hidden;
+}
+
+.practicePanel.closed {
+  max-height: 0;
+}
+
+.toggle {
+	font-size: 2em;
+	user-select: none;
+	width: 30px;
+	text-align: center;
+}
