@@ -1,0 +1,71 @@
+<svg width="1024" height="1024" viewBox="0 0 270.933 270.933" xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="prefix__a">
+      <stop offset="0" stop-color="#fff5cc" />
+      <stop offset="1" stop-color="#f5c874" />
+    </linearGradient>
+    <linearGradient xlink:href="#prefix__a" id="prefix__f" x1="92.519" y1="1.595" x2="92.519" y2="270.102"
+      gradientUnits="userSpaceOnUse" />
+    <linearGradient id="prefix__c">
+      <stop offset="0" stop-color="#ff4a2d" />
+      <stop offset="1" stop-color="#cb0803" />
+    </linearGradient>
+    <linearGradient id="prefix__b">
+      <stop offset="0" stop-color="#379fc5" />
+      <stop offset="1" stop-color="#520fed" />
+    </linearGradient>
+    <linearGradient id="prefix__d">
+      <stop offset=".462" stop-color="#ffea41" />
+      <stop offset="1" stop-color="#ff9604" />
+    </linearGradient>
+    <linearGradient id="prefix__e">
+      <stop offset="0" stop-color="#fff" />
+      <stop offset="1" stop-color="#d2c3ff" />
+    </linearGradient>
+    <linearGradient xlink:href="#prefix__b" id="prefix__k" x1="44.124" y1="52.74" x2="55.158" y2="103.671"
+      gradientUnits="userSpaceOnUse" gradientTransform="translate(-19.016 -19.016) scale(1.28074)" />
+    <linearGradient xlink:href="#prefix__c" id="prefix__j" x1="81.118" y1="31.247" x2="91.851" y2="82.953"
+      gradientUnits="userSpaceOnUse" gradientTransform="translate(-19.016 -19.016) scale(1.28074)" />
+    <radialGradient xlink:href="#prefix__d" id="prefix__g" cx="29.561" cy="12.081" fx="29.561" fy="12.081" r="48.676"
+      gradientUnits="userSpaceOnUse" gradientTransform="matrix(-.15932 .93763 -1.62663 -.27642 75.032 5.471)" />
+    <radialGradient xlink:href="#prefix__e" id="prefix__i" cx="28.243" cy="41.644" fx="28.243" fy="41.644" r="48.675"
+      gradientTransform="matrix(-.096 .87276 -1.79607 -.19756 113.966 52.45)" gradientUnits="userSpaceOnUse" />
+    <filter id="prefix__h" x="-.206" y="-.206" width="1.411" height="1.412" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="8.415" />
+    </filter>
+  </defs>
+  <path fill="url(#prefix__f)" d="M0 0h270.933v270.933H0z" />
+  <g font-size="32.988" font-family="FreeMono" stroke="#39569e" paint-order="stroke markers fill"><text
+      style="-inkscape-font-specification:FreeMono" x="23.392" y="121.134" fill="#39569e" stroke-width="1.365"
+      transform="translate(.265)">
+      <tspan style="-inkscape-font-specification:'Joti One'" x="23.392" y="121.134" font-weight="400"
+        font-family="Joti One">Sort Them All!</tspan>
+    </text><text style="-inkscape-font-specification:FreeMono" x="20.746" y="120.605" fill="#39569e"
+      stroke-width="1.365" transform="translate(.265)">
+      <tspan style="-inkscape-font-specification:'Joti One'" x="20.746" y="120.605" font-weight="400"
+        font-family="Joti One">Sort Them All!</tspan>
+    </text><text style="-inkscape-font-specification:FreeMono" x="21.275" y="119.018" fill="#ffcb04" stroke-width="2"
+      transform="translate(.265)">
+      <tspan style="-inkscape-font-specification:'Joti One'" x="21.275" y="119.018" font-weight="400"
+        font-family="Joti One">Sort Them All!</tspan>
+    </text></g>
+  <g stroke-width="2.133">
+    <path
+      d="M68.27 10.051c-25.685-.257-49.285 16.796-56.24 42.754v.002A57.67 57.67 0 00123.44 82.66c8.244-30.765-10.013-62.388-40.778-70.63A57.776 57.776 0 0068.27 10.05zM12.185 52.883C31.52 62.404 51.57 69.888 72.441 75.027c-21.243-5.165-41.273-12.653-60.256-22.144z"
+      fill="url(#prefix__g)" stroke-width="7.038" stroke="#eb561f" filter="url(#prefix__h)" opacity=".514"
+      transform="matrix(.4689 0 0 .4689 103.707 130.73)" />
+    <path fill="url(#prefix__g)"
+      d="M12.03 52.807c8.243-30.766 39.867-49.024 70.632-40.778 30.765 8.243 49.022 39.866 40.778 70.631C83.6 80.433 46.67 69.888 12.03 52.807z"
+      transform="matrix(.4689 0 0 .4689 103.707 130.73)" />
+    <path d="M123.44 82.66A57.67 57.67 0 1112.03 52.806C45.588 69.61 82.415 80.154 123.44 82.66z" fill="url(#prefix__i)"
+      transform="matrix(.4689 0 0 .4689 103.707 130.73)" />
+    <path style="-inkscape-stroke:none"
+      d="M109.615 154.564a28.567 28.567 0 00-.477 1.76c17.372 10.002 34.777 14.826 52.218 13.976a26.75 26.75 0 00.47-1.766c-18.786.167-36.14-4.663-52.211-13.97z"
+      color="#000" fill="#1b3a47" />
+    <path d="M57.308 38.338l49.31-34.246 25.5 54.293-23.33-6.252-9.867 36.818-28.161-7.545 9.864-36.818z" color="#000"
+      fill="url(#prefix__j)" transform="matrix(.4689 0 0 .4689 103.707 130.73)" />
+    <path d="M78.162 97.129l-49.309 34.246L3.349 77.082l23.333 6.252 9.867-36.818 28.16 7.545-9.864 36.818z"
+      color="#000" fill="url(#prefix__k)" transform="matrix(.4689 0 0 .4689 103.707 130.73)" />
+  </g>
+</svg>
