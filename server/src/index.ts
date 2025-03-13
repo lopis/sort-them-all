@@ -33,6 +33,10 @@ app.get('/practice/gen/:gen', async (req: Request, res: Response) => {
   res.send(list);
 });
 
+app.get('/health', async (req: Request, res: Response) => {
+  res.send('ok');
+});
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
