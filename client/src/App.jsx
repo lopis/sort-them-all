@@ -3,6 +3,7 @@ import './App.css';
 import MainGame from './game/MainGame';
 import { gameNumber } from './api/constants';
 import Menu from './components/Menu';
+import StatusBar from './components/StatusBar';
 
 const getTimeRemaining = () => {
   const now = new Date();
@@ -54,6 +55,7 @@ function App() {
 
   return (
     <>
+      <StatusBar />
       <div className="header">
         <h1>
           <a href="">Sort Them All!</a>
