@@ -1,7 +1,7 @@
 import ScoreTable from './ScoreTable';
 import './Modal.css';
 import { useState } from 'react';
-import { gameNumber, OPTION_COUNT } from '../api/constants';
+import { gameNumber } from '../api/constants';
 
 const Modal = ({ scores, onClose }) => {
   const [closing, setClosing] = useState(false);
@@ -16,18 +16,17 @@ const Modal = ({ scores, onClose }) => {
 
   const share = () => {
     const shareText = [
-      `🌱💦🔥 Sort-Them-All #${gameNumber}`,
+      `🌱Sort-Them-All #${gameNumber}`,
+      '💦🔥',
       `Guesses: ${scores.length}`,
-      ...Array.from({ length: OPTION_COUNT }).map((_, colIndex) => (
-        scores.map((scoreRow) => (scoreRow[colIndex] ? '🔴' : '⚫️')).join(' ')
-      ))
+      scores.map((scoreRow) => scoreRow.map(value => (value ? '🔴' : '⚫️')).join('')).join('\n'),
+      window.location.href,
     ];
 
     if (navigator.share) {
       navigator.share({
         title: `Sort-Them-All #${gameNumber}`,
         text: shareText.join('\n'),
-        url: window.location.href,
       }).catch((error) => console.error('Error sharing', error));
     } else {
       navigator.clipboard.writeText(shareText.join('\n')).then(() => {
