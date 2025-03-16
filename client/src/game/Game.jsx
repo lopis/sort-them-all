@@ -2,12 +2,12 @@ import { useState, useContext, useEffect } from 'react';
 
 import ApiDataContext from '../api/ApiDataContext';
 import { OPTION_COUNT } from '../api/constants.js';
-import Modal from '../components/Modal.jsx';
 import PokemonList from '../components/PokemonList.jsx';
 import './Game.css';
 import { loadGame, saveGame } from './storage.js';
 import { shuffleArray } from './util.js';
 import Loading from '../components/Loading.jsx';
+import ResultsModal from '../components/ResultsModal.jsx';
 
 const MAX_TRIES = 4;
 
@@ -117,7 +117,7 @@ function Game({ practice, onNewGame }) {
     <p>
       {correctCount} out of {OPTION_COUNT} in the correct position
     </p>
-    {!practice && showModal && <Modal scores={scores} onClose={closeModal} />}
+    {!practice && showModal && <ResultsModal scores={scores} onClose={closeModal} />}
   </div>;
 }
 
