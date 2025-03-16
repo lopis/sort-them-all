@@ -25,7 +25,9 @@ function App() {
   const [isPracticeOpen, setPracticeOpen] = useState(false);
 
   const startGame = () => {  
-    setGameStarted(true);
+    setTimeout(() => {
+      setGameStarted(true);
+    }, 150);
   };
 
   const startRandom = () => {
