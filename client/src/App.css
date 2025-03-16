@@ -65,8 +65,10 @@ button:active {
   transform: translateY(5px);
 }
 
-button:hover {
-	--button: var(--green);
+@media (hover: hover) {
+  button:hover {
+    --button: var(--green);
+  }
 }
 
 button.big {
