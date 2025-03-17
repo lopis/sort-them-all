@@ -36,7 +36,7 @@ button {
 	font-size: 1em;
 	border: none;
 	color: var(--white);
-	border-radius: 3px;
+	border-radius: 8px;
 	background: var(--button);
 	font-weight: 700;
 	transition: all 50ms ease-in-out;
@@ -81,10 +81,8 @@ button.big {
     0px var(--button-height) var(--button),
     0px 0px 0 2px var(--black),
     0px var(--button-height) 0 2px var(--black),
-    -6px calc(var(--button-height) + 7px) 0 2px gray,
-    6px calc(var(--button-height) + 7px) 0 2px gray,
-    -6px calc(var(--button-height) + 7px) 0 4px var(--black),
-    6px calc(var(--button-height) + 7px) 0 4px var(--black);
+    -6px calc(var(--button-height) + 7px) 0 2px #ccc4a4,
+    6px calc(var(--button-height) + 7px) 0 2px #ccc4a4;
 }
 
 button.big:active {
@@ -96,10 +94,8 @@ button.big:active {
     0px 4px var(--button),
     0px 0px 0 2px var(--black),
     0px 4px 0 2px var(--black),
-    -6px 7px 0 2px gray,
-    6px 7px 0 2px gray,
-    -6px 7px 0 4px var(--black),
-    6px 7px 0 4px var(--black);
+    -6px 7px 0 2px #ccc4a4,
+    6px 7px 0 2px #ccc4a4;
 }
 
 .buttonGroup {
