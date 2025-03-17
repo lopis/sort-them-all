@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Modal from './Modal';
 import './PokemonItem.css';
+import './IntroModal.css';
 
 const IntroModal = ({ criterion, onClose }) => {
   const [closed, setClosed] = useState(false);
@@ -19,7 +20,7 @@ const IntroModal = ({ criterion, onClose }) => {
         </div>
       </h2>
 
-      <div style={{ transform: 'scale(0.8)' }}>
+      <div className='examples'>
         <div className="item example">
           <div className='sprite'>
             <img src={'body-head.png'} />
