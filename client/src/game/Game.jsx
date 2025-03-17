@@ -8,6 +8,7 @@ import { loadGame, saveGame } from './storage.js';
 import { shuffleArray } from './util.js';
 import Loading from '../components/Loading.jsx';
 import ResultsModal from '../components/ResultsModal.jsx';
+import IntroModal from '../components/IntroModal.jsx';
 
 const MAX_TRIES = 4;
 
@@ -19,6 +20,7 @@ function Game({ practice, onNewGame }) {
   const [scores, setScores] = useState([]);
   const [tries, setTries] = useState(0);
   const [showModal, setShowModal] = useState(false);
+  const [showIntro, setShowIntro] = useState(false);
 
   useEffect(() => {
     let save;
@@ -30,6 +32,7 @@ function Game({ practice, onNewGame }) {
       setGameOver(save.gameOver);
     } else {
       setPokemonList(shuffleArray(pokemonList));
+      setShowIntro(true);
     }
   }, [pokemonList, practice]);
 
@@ -56,10 +59,6 @@ function Game({ practice, onNewGame }) {
     setTimeout(() => setShowModal(true), time);
   };
 
-  const closeModal = () => {
-    setShowModal(false);
-  };
-
   const correctCount = pokemons.reduce((previous, current) => {
     return previous + (current.correct ? 1 : 0);
   }, 0);
@@ -81,9 +80,11 @@ function Game({ practice, onNewGame }) {
     return <Loading />;
   }
   
+  const criterion = sortingCriteria.replace(/_-/, ' ').replace('hp', 'HP');
+
   return <div style={{ textAlign: 'center' }}>
     <h2>
-      Sort by: <strong>{sortingCriteria.replace(/_-/, ' ').replace('hp', 'HP')}</strong>
+      Sort by: <strong>{criterion}</strong>
       <br />
       <div style={{ fontSize: '75%' }}>
         <span style={{ marginRight: -4 }}>in ascending order ⇃</span><span className="orderIcon"></span>
@@ -117,7 +118,8 @@ function Game({ practice, onNewGame }) {
     <p>
       {correctCount} out of {OPTION_COUNT} in the correct position
     </p>
-    {!practice && showModal && <ResultsModal scores={scores} onClose={closeModal} />}
+    {showIntro && <IntroModal criterion={criterion} onClose={() => setShowIntro(false)} /> }
+    {!practice && showModal && <ResultsModal scores={scores} onClose={() => setShowModal(false)} />}
   </div>;
 }
 
