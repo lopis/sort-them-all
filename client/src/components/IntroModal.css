@@ -10,6 +10,7 @@
 	margin: 5px 0;
 	padding-right: 50px;
   z-index: 1;
+  --animation-delay: 1000ms;
 }
 
 .item.example img {
@@ -20,20 +21,20 @@
 .item.example:nth-of-type(1) {
   margin-right: 40px;
   animation:
-    move-up 500ms linear backwards 500ms,
-    turn-green 200ms ease-in-out forwards 1300ms;
+    move-up 500ms linear backwards calc(500ms + var(--animation-delay)),
+    turn-green 200ms ease-in-out forwards calc(1300ms + var(--animation-delay));
 }
 .item.example:nth-of-type(2) {
   margin-right: 20px;
   animation:
-    move-up 500ms linear backwards 500ms,
-    turn-green 200ms ease-in-out forwards 1500ms;
+    move-up 500ms linear backwards calc(500ms + var(--animation-delay)),
+    turn-green 200ms ease-in-out forwards calc(1500ms + var(--animation-delay));
 }
 .item.example:nth-of-type(3) {
   left: 0px;
   animation:
-    move-down 500ms linear backwards 500ms,
-    turn-green 200ms ease-in-out forwards 1700ms;
+    move-down 500ms linear backwards calc(500ms + var(--animation-delay)),
+    turn-green 200ms ease-in-out forwards calc(1700ms + var(--animation-delay));
 }
 
 @keyframes move-up {
