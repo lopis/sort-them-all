@@ -151,6 +151,7 @@ export const fetchFromAllPokemon = async (seed: number) => {
       } while (tries++ < 10 && sprites.still.length < 1);
 
       return {
+        id: pokemonData.id,
         name: pokemonData.species.name,
         label: label || null,
         height: pokemonData.height,
