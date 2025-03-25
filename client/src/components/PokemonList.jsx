@@ -9,7 +9,7 @@ function PokemonList ({ pokemonList = [], onListChange }) {
       list={pokemonList}
       template={PokemonItem}
       springConfig={{ stiffness: 370, damping: 26 }}
-      itemKey="name"
+      itemKey="id"
       onMoveEnd={onListChange}
       unsetZIndex
       constrainDrag
