@@ -26,7 +26,7 @@ const ApiDataProvider = ({ practice, generation, children }) => {
       }
     }
     
-    setPokemonList(list);
+    setPokemonList(list.map((pokemon, index) => ({ ...pokemon, id: index })));
     setSortingCriteria(criterion);
     setCorrectOrder([...list].sort((a, b) => a[criterion] - b[criterion]).map((pokemon) => pokemon[criterion]));
     setLoading(false);
